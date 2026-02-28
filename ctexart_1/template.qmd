@@ -1,6 +1,22 @@
 ---
 format:
-  ctexart_1-pdf: default
+  pdf:
+    pdf-engine: xelatex
+    documentclass: ctexart
+    classoption:
+      - 11pt
+      - oneside
+    colorlinks: true
+    geometry:
+      - left=60mm
+      - right=13mm
+      - top=20mm
+      - bottom=25mm
+      - marginparwidth=35mm
+      - marginparsep=10mm
+      - headheight=21pt
+      - headsep=2\baselineskip
+    include-in-header: _extensions/Victory-Hugo/ctexart_1/preamble.tex
 bibliography: example.bib
 ---
 
