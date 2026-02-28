@@ -2,17 +2,15 @@
 title: "Quarto 展示"
 lang: zh  # 也可以使用lang: zh-CN
 format: code-art-1-pdf
-
 execute:
-  warning: false
+  python: /home/luolintao/miniconda3/bin/python
 ---
 
 
 ```{r setup, include=FALSE}
-#! 如果只写 python 或 R，请删除本 chunk。
-if (requireNamespace("reticulate", quietly = TRUE)) {
-  reticulate::use_python(Sys.getenv("QUARTO_PYTHON", Sys.which("python")), required = FALSE)
-}
+#! 如果只写python或者R，请删除。
+library(reticulate) 
+use_python("/home/luolintao/miniconda3/bin/python", required = TRUE)
 ```
 
 # Code Examples
