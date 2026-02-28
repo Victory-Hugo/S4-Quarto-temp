@@ -10,7 +10,7 @@ format:
     link-citations: true
     link-bibliography: true
     geometry:
-      - left=60mm
+      - left=50mm
       - right=13mm
       - top=20mm
       - bottom=25mm
