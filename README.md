@@ -5,6 +5,7 @@
 ## 可用模板
 
 - `ctexart_1`: 中文 XeLaTeX 预印本模板
+- `cbook_1`: 中文 XeLaTeX 书籍模板（三国演义）
 
 ## 使用方法
 

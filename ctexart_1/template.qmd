@@ -29,9 +29,9 @@ bibliography: example.bib
 
   {\fontsize{35}{39}\selectfont\bfseries\color{titleblue} 标题：使用Quarto的 \LaTeX\ 模板}\\[0.40em]
 
-  {\Large\bfseries Hugo\,\orcidlink{0009-0001-5790-4866}$^{1\ast}$}\\[0.72em]
+  {\Large\bfseries 梧声\,\orcidlink{0009-0001-5790-4866}$^{1\ast}$}\\[0.72em]
 
-  {\large $^{1}$重庆医科大学基础医学院}\\[0.72em]
+  {\large $^{1}$重庆医科大学基础医学院，重庆市渝中区石油路，400016，中国}\\[0.72em]
 
 \end{flushleft}
 
@@ -43,7 +43,7 @@ bibliography: example.bib
 
   $^{\ast}$第一作者
 
-  \textbf{现地址:} 重庆医科大学基础医学院，重庆市渝中区石油路，400016，中国
+  \textbf{现地址:} 重庆市渝中区石油路，400016，中国
 
   \textbf{数据可用性:} 数据和可用代码详见\href{https://github.com/Victory-Hugo}{GitHub}
 
