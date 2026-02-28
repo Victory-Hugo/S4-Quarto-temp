@@ -9,6 +9,9 @@ bibliography: reference.bib     # 参考文献文件,放在与本文件同一目
 csl: Nature.csl               # 引用样式文件,放在与本文件同一目录下(这里下载：https://www.zotero.org/styles/)
 link-citations: true            # 引用启用超链接
 link-bibliography: true         # 参考文献启用超链接
+linkcolor: teal
+citecolor: teal
+urlcolor: teal
 
 format:
   pdf:
