@@ -7,6 +7,8 @@ format:
       - 11pt
       - oneside
     colorlinks: true
+    link-citations: true
+    link-bibliography: true
     geometry:
       - left=60mm
       - right=13mm
