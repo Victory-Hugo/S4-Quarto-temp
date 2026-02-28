@@ -1,7 +1,7 @@
 ---
 title: "标题：使用Quarto的 LaTeX 模板"
 format:
-  quarto-template1-pdf: default
+  ctexart_1-pdf: default
 bibliography: example.bib
 ---
 
