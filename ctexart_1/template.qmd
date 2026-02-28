@@ -16,7 +16,7 @@ format:
       - marginparsep=10mm
       - headheight=21pt
       - headsep=2\baselineskip
-    include-in-header: _extensions/ctexart_1/preamble.tex
+    include-in-header: _extensions/Victory-Hugo/ctexart_1/preamble.tex
 bibliography: example.bib
 ---
 
