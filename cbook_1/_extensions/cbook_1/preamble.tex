@@ -1,0 +1,26 @@
+\usepackage{graphicx}                              % 支持插入图片
+\usepackage{ctex}
+\AtBeginDocument{
+\thispagestyle{empty}
+\newgeometry{margin=0pt}
+\noindent\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{三国演义.jpeg} % 封面图片
+\restoregeometry
+\clearpage
+}                                                 % 封面设置
+\setlength{\parindent}{2em}                       % 首行缩进两个字符
+\usepackage{wrapfig}                              % 支持图文环绕
+\linespread{1.15}                                 % 行距设置为1.15倍
+\setlength{\textfloatsep}{2pt plus 2pt minus 2pt} % 文字与浮动体（如图）的上下间距
+\setlength{\intextsep}{2pt plus 2pt minus 2pt}    % 环绕时图与文字的间距（更紧凑）
+\setlength{\floatsep}{2pt plus 2pt minus 2pt}     % 浮动体之间的间距
+\setlength{\abovecaptionskip}{2pt}                % 图题与图之间的间距
+\setlength{\belowcaptionskip}{2pt}                % 图题与后续文字的间距
+\renewcommand{\floatpagefraction}{0.9}            % 避免图单独占据过多页面
+\renewcommand{\textfraction}{0.1}                 % 让页面尽量多放一些文字
+\renewcommand{\thechapter}{\chinese{chapter}}       % 一级标题(#)：一、二、三
+\renewcommand{\thesection}{\chinese{section}}       % 二级标题(##)：一、二、三
+\renewcommand{\thesubsection}{\chinese{subsection}} % 三级标题(###)：（一）、（二）
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}、} % 四级标题(####)：1、2、3
+\renewcommand{\theparagraph}{(\alph{paragraph})}     % 五级标题(#####)：(a)、(b)、(c)
+\renewcommand{\thesubparagraph}{\roman{subparagraph})} % 六级标题(######)：i)、ii)、iii)
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}  % 为超链接设置颜色
