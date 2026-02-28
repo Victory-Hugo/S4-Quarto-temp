@@ -1,0 +1,192 @@
+---
+title: "Quarto 展示"
+lang: zh  # 也可以使用lang: zh-CN
+format: code-art-1-pdf
+
+execute:
+  warning: false
+---
+
+
+```{r setup, include=FALSE}
+#! 如果只写 python 或 R，请删除本 chunk。
+if (requireNamespace("reticulate", quietly = TRUE)) {
+  reticulate::use_python(Sys.getenv("QUARTO_PYTHON", Sys.which("python")), required = FALSE)
+}
+```
+
+# Code Examples
+
+## `Python` Code
+文件使用 `Quarto`[^1] 进行创建。
+
+[^1]: Quarto is a software that combines code generation, image drawing, and document writing in one.
+
+::: {.callout-note title="Tip with Title"}
+callout 语法可以使用如下类别：`note`, `warning`, `important`, `tip`, and `caution`。
+同时，每种类别还可以使用 `simple`和`minimal`或者`default`。
+:::
+
+::: {.callout-important appearance="simple"}
+让我们看看一个例子。
+:::
+
+```{python}
+#| label: Example 0
+#| fig-cap: "Python Example"
+#| fig-width: 7
+#| fig-height: 5
+#| warning: false
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+data = sns.load_dataset("iris")
+
+sns.scatterplot(data=data, 
+            x= "sepal_length", 
+            y = "petal_length",
+            hue = "species")
+plt.show()
+
+```
+
+## R Code
+
+::: {.callout-tip}
+# Using R Code
+Let's look at **R code**.
+:::
+
+```{r}
+#| label: fig-mpg
+#| fig-cap: "City and highway mileage for 38 popular models of cars."
+#| fig-subcap:
+#|   - "Color by number of cylinders"
+#|   - "Color by engine displacement, in liters"
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 3
+#| warning: false
+library(tidyverse)
+ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c() +
+  theme_minimal()
+
+ggplot(mpg, aes(x = hwy, y = cty, color = displ)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c(option = "E") +
+  theme_minimal()
+
+
+```
+
+```{r}
+#| label: Example 1
+#| fig-cap: "Line Plot"
+#| fig-width: 6
+#| fig-height: 3.5
+#| warning: false
+library(tidyverse)
+library(tidyplots)
+
+df <- 
+  read_csv("https://tidyplots.org/data/sales-of-cigarettes-per-adult-per-day.csv") |> 
+  mutate(
+    cigarettes = `Manufactured cigarettes sold per adult per day`,
+    Entity = fct_relevel(Entity, "France", "Germany", "United States"),
+    Entity = fct_rev(Entity)
+    )
+
+df |> 
+  tidyplot(x = Year, y = cigarettes, color = Entity) |> 
+  add_mean_line(linewidth = 0.5) |> 
+  add_title("Sales of cigarettes per adult per day") |> 
+  add_caption("Data source: Our World in Data") |> 
+  theme_minimal_y() |> 
+  adjust_y_axis(limits = c(0,11)) |> 
+  adjust_size(100, 50) |> 
+  adjust_colors(c(
+    "France" = "#F6C54D",
+    "Germany" = "#C02D45",
+    "United States" = "#4DACD6"
+    ), na.value = "lightgrey") |> 
+  adjust_legend_position("top") |> 
+  adjust_title(fontsize = 14) |> 
+  remove_legend_title() |> 
+  remove_y_axis_title()
+```
+
+```{R}
+#| label: Example 2
+#| fig-cap: "Overlapping Line Plot"
+#| fig-width: 3
+#| fig-height: 3
+#| warning: false
+#* Plot overlapping lines
+library(tidyplots)
+climate |> 
+  tidyplot(x = month, y = max_temperature, dodge_width = 0) |> 
+  add_mean_line(group = year, alpha = 0.08) |> 
+  add_mean_line() |> 
+  adjust_x_axis(rotate_labels = 90)
+```
+
+```{r}
+#| label: Example 3
+#| fig-cap: "Heatmap"
+#| fig-width: 3
+#| fig-height: 3
+#| warning: false
+#* Plot heatmap
+library(tidyplots)
+climate |> 
+  tidyplot(x = month, y = year, color = max_temperature) |> 
+  add_heatmap()
+```
+
+```{r}
+#| label: Example 4
+#| fig-cap: "Count Plot, Perfect Alternative to Bar"
+#| fig-width: 3
+#| fig-height: 3
+#| warning: false
+#* Add count plot, perfect alternative to bar
+library(tidyplots)
+dinosaurs |>
+    tidyplot(x = time_lived) |>
+    adjust_x_axis(rotate_labels = TRUE) |>
+    add_count_bar(alpha = 0.4) |>
+    add_count_dash() |>
+    add_count_dot() |>
+    add_count_value() |>
+    add_count_line()
+```
+
+```{r}
+#| label: Example 5
+#| fig-cap: "Heatmap"
+#| fig-width: 3
+#| fig-height: 3
+#| warning: false
+
+library(tidyverse)
+library(tidyplots)
+
+df <- 
+  read_csv("https://tidyplots.org/data/correlation-matrix.csv")
+
+df |> 
+  tidyplot(x = x, y = y, color = correlation) |> 
+  add_heatmap() |> 
+  sort_x_axis_labels(order_x) |> 
+  sort_y_axis_labels(order_y) |> 
+  remove_x_axis() |> 
+  remove_y_axis() |> 
+  remove_legend_title() |> 
+  adjust_legend_position("right") |> 
+  adjust_colors(colors_continuous_inferno) |> 
+  adjust_theme_details(legend.key.height = unit(1, "null")) |> 
+  adjust_size(width = 150, height = 150) |>
+  add_caption("Data source: Spellman PT, et al. 1998. Mol Biol Cell 9(12): 3273-97.")
+```
