@@ -20,6 +20,7 @@ format:
       - headsep=2\baselineskip
     include-in-header: _extensions/Victory-Hugo/ctexart_1/preamble.tex
 bibliography: example.bib
+csl: 中文作者日期引用格式.csl     # 引用样式文件,放在与本文件同一目录下(这里下载：https://www.zotero.org/styles/)
 ---
 
 <!-- 在这里替换标题、作者和单位 -->
