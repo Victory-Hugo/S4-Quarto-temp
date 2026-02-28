@@ -24,20 +24,16 @@ quarto render <你的文件名>.qmd --to pdf
 
 ### ctexart_1
 
-![ctexart_1_1|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151354476.png)
+![ctexart_1_1|200](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151354476.png)
 
-![ctexart_1_2|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151453867.png)
+![ctexart_1_2|200](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151453867.png)
 
 ### cbook_1
 
-![cbook_1_1|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151643841.png)
+![cbook_1_1|200](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151643841.png)
 
-![image.png|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151723764.png)
+![image_1_2|200](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151723764.png)
 
-![image.png|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151740657.png)
+![image_1_3|200](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151740657.png)
 
-![cbook_1_2|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151723764.png)
-
-![cbook_1_3|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151740657.png)
-
-![cbook_1_4|550](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151752270.png)
+![cbook_1_4|200](https://picturerealm.oss-cn-chengdu.aliyuncs.com/obsidian/20260228151752270.png)
