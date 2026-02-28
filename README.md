@@ -15,5 +15,5 @@ quarto use template Victory-Hugo/S4-Quarto-temp/ctexart_1
 生成后可渲染：
 
 ```bash
-quarto render <你的文件名>.qmd --to ctexart_1-pdf
+quarto render <你的文件名>.qmd --to pdf
 ```
