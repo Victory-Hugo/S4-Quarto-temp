@@ -5,8 +5,8 @@ toc: false                      # 是否生成目录
 toc-title: 目录                 # 目录标题
 toc-depth: 3                    # 目录深度
 number-sections: true           # 是否为章节编号
-bibliography: reference.bib     # 参考文献文件,放在与本文件同一目录下
-csl: 中文作者日期引用格式.csl     # 引用样式文件,放在与本文件同一目录下(这里下载：https://www.zotero.org/styles/)
+bibliography: data/参考文献.bib  # 参考文献文件,放在与本文件同一目录下
+csl: data/中文作者日期引用格式.csl # 引用样式文件,放在与本文件同一目录下(这里下载：https://www.zotero.org/styles/)
 link-citations: true            # 引用启用超链接
 link-bibliography: true         # 参考文献启用超链接
 linkcolor: teal
@@ -62,4 +62,4 @@ format:
 
 \underline{话说汉灵帝中平元年，天下大旱，民不聊生}。时有张翼德者，字益德，河东解良人也。少时好武艺，性豪爽仗义，常与乡里豪杰结为兄弟。及至长成，闻天下大乱，遂携家带口，往洛阳\textcolor[HTML]{AD9466}{投军}。
 
-{{< include 其他章节内容.qmd >}}
+{{< include ./markdown/其他章节内容.qmd >}}
