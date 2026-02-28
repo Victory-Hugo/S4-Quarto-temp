@@ -1,0 +1,68 @@
+---
+title: "标题：使用Quarto的 LaTeX 模板"
+format:
+  quarto-template1-pdf: default
+bibliography: example.bib
+---
+
+<!-- 在这里替换标题、作者和单位 -->
+
+```{=latex}
+\begin{flushleft}
+
+  {\fontsize{35}{39}\selectfont\bfseries\color{titleblue} 标题：使用Quarto的 \LaTeX\ 模板}\\[0.40em]
+
+  {\Large\bfseries Hugo\,\orcidlink{0009-0001-5790-4866}$^{1\ast}$}\\[0.72em]
+
+  {\large $^{1}$重庆医科大学基础医学院}\\[0.72em]
+
+\end{flushleft}
+
+\dividerline
+
+\leftnote{
+  \textbf{联系方式:}\\
+  \href{mailto:giantlinlinlin@gmail.com}{giantlinlinlin@gmail.com}
+
+  $^{\ast}$第一作者
+
+  \textbf{现地址:} 重庆医科大学基础医学院，重庆市渝中区石油路，400016，中国
+
+  \textbf{数据可用性:} 数据和可用代码详见\href{https://github.com/Victory-Hugo}{GitHub}
+
+  \textbf{经费支持:} 为爱发电。
+
+  \textbf{利益冲突:} 作者声明不存在利益冲突。
+}
+```
+
+# 摘要
+
+这是一个精简的单文件稿件版本。核心章节直接在主文档中撰写，减少外部文件依赖并简化维护，同时保留标题、作者、边注、页脚和分节样式。
+
+```{=latex}
+\vspace{0.35em}
+\dividerline
+```
+
+# 引言
+
+该模板展示了简洁的预印本版式，支持公式、图表与参考文献。对于协作写作，将核心叙述集中在一个文件中可以减少路径问题并提升迭代效率。本文档已配置 XeLaTeX 引擎，可稳定处理中英文混排场景。
+
+# 材料与方法
+
+我们采用以可复现性为核心的最小化流程，包括研究问题定义、数据处理规则记录、统计方法声明，以及软件版本追踪。所有关键元信息都可放入 YAML 和正文中统一管理。
+
+# 结果
+
+该样式在保留标准结构的同时降低了排版负担。通过统一颜色、标题层级、边注区与页脚规则，文档可在初稿、预印本和内部审阅之间平滑切换[^1]。
+
+[^1]: 这是一个示例的脚注。
+
+# 讨论
+
+单文件组织方式提升了可移植性，并降低投稿时章节文件缺失的风险。对于更大型项目，后续仍可拆分为多文件并通过 `include` 机制组合，不影响已有版式定义。
+
+# 致谢
+
+本模板为示例性重构版本，用于展示 Quarto + XeLaTeX 的预印本排版能力。
