@@ -12,7 +12,7 @@ link-bibliography: true         # 参考文献启用超链接
 
 format:
   pdf:
-    documentclass: book          # 文档类型
+    documentclass: ctexbook          # 文档类型
     pdf-engine: xelatex          # 使用xelatex引擎
     papersize: a5                # 纸张大小
     title-block-style: none      # 标题样式

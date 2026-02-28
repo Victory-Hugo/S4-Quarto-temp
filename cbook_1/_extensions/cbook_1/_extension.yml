@@ -6,7 +6,7 @@ contributes:
   formats:
     cbook_1-pdf:
       pdf-engine: xelatex
-      documentclass: book
+      documentclass: ctexbook
       papersize: a5
       title-block-style: none
       fig-cap-location: bottom

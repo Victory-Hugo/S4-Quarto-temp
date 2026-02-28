@@ -10,6 +10,7 @@
 
 ```bash
 quarto use template Victory-Hugo/S4-Quarto-temp/ctexart_1
+quarto use template Victory-Hugo/S4-Quarto-temp/cbook_1
 ```
 
 生成后可渲染：
