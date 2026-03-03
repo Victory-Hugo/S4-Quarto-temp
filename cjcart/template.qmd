@@ -3,7 +3,7 @@ format:
   pdf:
     documentclass: cjc
     pdf-engine: xelatex
-    template: _extensions/cjc/template-no-amssymb.tex
+    template: _extensions/Victory-Hugo/cjc/template-no-amssymb.tex
     classoption: [twocolumn]
     format-resources:
       - style/cjc.cls
