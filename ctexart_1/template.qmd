@@ -22,6 +22,7 @@ format:
 bibliography: ./data/参考文献.bib
 csl: ./data/中文作者日期引用格式.csl     # 引用样式文件,放在与本文件同一目录下(这里下载：https://www.zotero.org/styles/)
 ---
+<!-- 若需要行号则将下列内容删除 -->
 ```{=latex}
 \nolinenumbers
 ```
