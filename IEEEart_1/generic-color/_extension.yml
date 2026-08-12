@@ -1,0 +1,20 @@
+title: Generic Colorized IEEE Journal PDF
+author: Template maintainers
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    pdf:
+      pdf-engine: xelatex
+      documentclass: ieeecolor
+      classoption:
+        - journal
+        - twoside
+        - web
+      include-in-header: preamble.tex
+      format-resources:
+        - ieeecolor.cls
+        - generic.sty
+        - LOGO-generic-web.eps
+      colorlinks: true
+      keep-tex: true

@@ -1,0 +1,126 @@
+---
+format: generic-color-pdf
+bibliography: data/references.bib
+cite-method: natbib
+biblio-style: IEEEtran
+natbiboptions: numbers
+link-citations: true
+include-after-body: biographies.tex
+---
+
+```{=latex}
+\markboth{\journalname, VOL. XX, NO. XX, 2026}
+{Author \MakeLowercase{\textit{et al.}}: Short Running Title}
+
+\title{Preparation of Papers for IEEE Transactions and Journals}
+
+\author{First A. Author, \IEEEmembership{Fellow, IEEE},
+Second B. Author, and Third C. Author, Jr., \IEEEmembership{Member, IEEE}%
+\thanks{Manuscript received Month DD, YYYY; revised Month DD, YYYY.
+This work was supported by the example funding body under Grant 123456.}%
+\thanks{First A. Author and Second B. Author are with the Department of
+Engineering, Example University, City 000000, Country
+(e-mail: first.author@example.org).}%
+\thanks{Third C. Author is with the Department of Applied Science,
+Another University, City 000000, Country.}}
+
+\maketitle
+
+\begin{abstract}
+Replace this paragraph with a self-contained abstract of 150--250 words.
+State the problem, methods, principal results, and conclusion without
+citations, footnotes, displayed equations, or undefined abbreviations.
+\end{abstract}
+
+\begin{IEEEkeywords}
+IEEE template, keywords, Quarto, reproducible publishing.
+\end{IEEEkeywords}
+```
+
+# Introduction {#sec-introduction}
+
+```{=latex}
+\IEEEPARstart{T}{his}
+```
+template combines an IEEE-compatible journal class with an editable Quarto
+source. Write ordinary prose, headings, lists, equations, figures, tables,
+cross-references, and citations in Markdown. Use raw LaTeX only for
+class-specific structures such as the title block, `IEEEkeywords`, and author
+biographies. A citation can be written as [@young1964].
+
+## Abbreviations and Acronyms
+
+Define abbreviations and acronyms when they first appear in the text, even if
+they were already defined in the abstract. Avoid abbreviations in the title
+unless they are unavoidable.
+
+## Equations
+
+Number equations consecutively and define every symbol near its first use. For
+example,
+
+$$
+E = mc^2.
+$$ {#eq-energy}
+
+Refer to @eq-energy instead of typing a fixed equation number.
+
+# Methods
+
+Describe the data, experimental design, software, and statistical procedures
+in enough detail for another researcher to reproduce the work. Use SI units
+consistently and report uncertainty together with point estimates.
+
+## Lists
+
+The following is ordinary Markdown:
+
+1. Define the research question.
+2. Record data-processing rules.
+3. Report software versions and parameters.
+
+# Results
+
+@fig-magnetization demonstrates a standard one-column figure. Keep
+axis labels and annotations legible at the final printed size.
+
+![Magnetization as a function of applied field. Explain the significance of
+the figure in the caption.](image/fig1.png){#fig-magnetization fig-pos="t" width="100%"}
+
+Table 1 demonstrates a compact one-column table. The IEEE two-column class is
+not compatible with Pandoc's default `longtable` output, so tables use a small
+raw LaTeX block.
+
+```{=latex}
+\begin{table}[!t]
+\caption{Selected Magnetic Quantities and SI Units}
+\label{tbl-units}
+\centering
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{cll}
+\hline
+Symbol & Quantity & Example SI unit \\
+\hline
+$B$ & magnetic flux density & T \\
+$H$ & magnetic field strength & A/m \\
+$m$ & magnetic moment & A$\cdot$m$^2$ \\
+\hline
+\end{tabular}
+\end{table}
+```
+
+# Discussion
+
+Interpret the results in relation to the study question and earlier work.
+Separate direct evidence from speculation, describe limitations, and avoid
+claims that extend beyond the design or data.
+
+# Conclusion
+
+Summarize the main result and its scope without repeating the abstract.
+
+# Acknowledgment {.unnumbered}
+
+The authors thank colleagues and facilities that contributed to this work.
+Use the singular heading “Acknowledgment” in accordance with the source
+template.
