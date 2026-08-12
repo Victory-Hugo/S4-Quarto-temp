@@ -1,0 +1,31 @@
+---
+format: cqmu-letter-pdf
+lang: zh-CN
+---
+
+```{=latex}
+\begin{letter}{尊敬的申请委员会：
+\bigskip\\
+\bigskip}
+
+\letteraddressblock
+\opening{}
+\letterwatermark
+```
+
+`\hspace{2em}`{=latex}在计量经济学与基因组学中，**统计推断**的建立往往会受到混杂变量的干扰——这类变量会引发伪相关关系，进而导致因果关系失真。而双偏差校正套索法的核心目标，是在高维场景下高效估计含隐式混杂变量的模型，通过同时消除混杂变量与正则化带来的偏差，最终实现无偏估计。
+
+`\hspace{2em}`{=latex}部分线性模型是一类半参数模型，其内部同时包含线性回归项与非线性函数项。以部分线性模型为框架，能够便捷地引入非线性趋势与混杂变量，这与实际数据分析中存在混杂因素的大规模非参数/半参数估计问题高度契合。
+
+::: callout-tip
+## 使用技巧
+
+您可以替换图片和文字来使用本模板。
+:::
+
+```{=latex}
+\bigskip
+\bigskip
+\closing{此致，\\ \hspace{2em}敬礼！}
+\end{letter}
+```

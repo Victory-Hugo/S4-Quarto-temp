@@ -1,0 +1,15 @@
+title: CQMU Chinese Letter PDF
+author: Template maintainers
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    pdf:
+      pdf-engine: xelatex
+      documentclass: CQMUletter
+      classoption:
+        - 12pt
+      include-in-header: preamble.tex
+      format-resources:
+        - CQMUletter.cls
+      keep-tex: true
