@@ -20,6 +20,25 @@
 \RequirePackage{hyperref}
 \RequirePackage{booktabs}
 \RequirePackage{tcolorbox}
+\RequirePackage{eso-pic}
+
+%%==========================================
+%% 校徽水印（每一页居中显示，参照 CQMUletter 模板）
+%% 关闭方法：在 \begin{document} 之前使用 \nowatermark
+%% 调整大小：\watermarkwidth{0.5\textwidth}
+%%==========================================
+\newcommand\CQMU@wmfile{figures/logo-watermark.pdf}
+\def\CQMU@wmwidth{0.42\textwidth}
+\newcommand\watermarkfile[1]{\renewcommand\CQMU@wmfile{#1}}
+\newcommand\watermarkwidth[1]{\def\CQMU@wmwidth{#1}}
+\newif\ifCQMU@watermark
+\CQMU@watermarktrue
+\newcommand\nowatermark{\CQMU@watermarkfalse}
+\newcommand\reportwatermark{\AddToShipoutPictureBG{%
+  \AtPageCenter{\makebox(0,0){%
+    \includegraphics[width=\CQMU@wmwidth]{\CQMU@wmfile}}}%
+}}
+\AtBeginDocument{\ifCQMU@watermark\reportwatermark\fi}
 
 
 \definecolor{linkcolor}{HTML}{005f9c}
