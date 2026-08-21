@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{何清2014大数据下的机器学习算法综述}
+\bibinfo{author}{何清}, \bibinfo{author}{李宁}, \bibinfo{author}{罗文娟} \& \bibinfo{author}{史忠植}.
+\newblock \bibinfo{title}{大数据下的机器学习算法综述}.
+\newblock \emph{\bibinfo{journal}{模式识别与人工智能}} \textbf{\bibinfo{volume}{27}}, \bibinfo{pages}{327--336} (\bibinfo{year}{2014}).
+
+\bibitem{刘志勇2019人工智能在法医学中的应用与展望}
+\bibinfo{author}{刘志勇}, \bibinfo{author}{张更谦} \& \bibinfo{author}{严江伟}.
+\newblock \bibinfo{title}{人工智能在法医学中的应用与展望.}
+\newblock \emph{\bibinfo{journal}{Forensic Science \& Technology}} \textbf{\bibinfo{volume}{44}}, \bibinfo{pages}{383} (\bibinfo{year}{2019}).
+
+\bibitem{任昕昕2026人工智能在法医毒物学中的应用与展望}
+\bibinfo{author}{任昕昕} \emph{et~al.}
+\newblock \bibinfo{title}{人工智能在法医毒物学中的应用与展望.}
+\newblock \emph{\bibinfo{journal}{Forensic Science \& Technology}} \textbf{\bibinfo{volume}{51}}, \bibinfo{pages}{44} (\bibinfo{year}{2026}).
+
+\end{thebibliography}

@@ -1,0 +1,187 @@
+\documentclass{CQMUReport}  %! 使用xelatex编译
+
+% 根据个人情况修改
+\headl{重庆医科大学}
+\headc{法医学研究报告}
+\headr{第~\thepage~页}
+\lessonTitle{人工智能与深度学习}
+\reportTitle{大数据时代下人工智能在法医学中的应用}
+\stuname{GiantLin\,\orcidlink{0009-0001-5790-4866}}
+\stuid{2018222XXX}
+\inst{基础医学院}
+\major{法医学}
+\date{\today}
+
+\begin{document}
+
+% =============================================
+%* Part 1: 封面
+% =============================================
+\cover
+\thispagestyle{empty} % 首页不显示页码
+\clearpage
+
+% =============================================
+%* Part 2： 摘要
+% =============================================
+\begin{abstract}
+
+随着大数据、人工智能与深度学习技术的快速发展，
+法医学正逐步由传统经验判断向数据驱动和智能分析模式转变。
+人工智能能够对海量、复杂且多模态的法医学数据进行高效处理，在法医病理学、
+法医影像学、法医遗传学、法医毒物分析以及个体识别等领域展现出较高的应用价值。
+基于深度学习的图像识别、模式分类和预测模型，可辅助完成损伤识别、
+死因推断、年龄估计、DNA数据分析及毒物筛查，从而提高鉴定效率与结果的一致性。
+同时，大数据平台能够促进不同来源法医学信息的整合，为智能化鉴定和科研提供数据基础。
+然而，人工智能在法医学中的应用仍面临数据质量与标准化不足、
+算法可解释性有限、隐私保护及伦理责任界定等问题。未来应加强高质量数据库建设、
+算法验证及规范制定，推动人工智能技术与法医学实践深度融合，
+为更加客观、精准和高效的司法鉴定提供技术支持。
+
+
+\vspace{16em}
+关键词：人工智能；深度学习；大数据；法医学；司法鉴定；智能分析
+\end{abstract}
+\thispagestyle{empty} % 摘要页不显示页码
+\clearpage
+
+
+% =============================================
+% Part 3： 目录页
+% =============================================
+% 重置页码，并使用罗马数字
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+
+% =============================================
+% Part 4： 正文内容
+% =============================================
+% 重置页码，并使用阿拉伯数字
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%%可选择这里也放一个标题
+%\begin{center}
+%    \title{ \Huge \textbf{{标题}}}
+%\end{center}
+
+\newpage
+
+\section{引言}
+
+随着信息技术的快速发展，人类社会进入以海量数据产生、存储与分析为特征的大数据时代。人工智能作为当前科技发展的重要方向，依托机器学习、深度学习等技术，在图像识别、自然语言处理、模式分类和智能决策等领域取得了显著进展。尤其是深度学习技术能够从复杂数据中自动提取特征并建立预测模型，为传统依赖人工经验的专业领域提供了新的技术手段。
+
+法医学是一门服务于司法实践的应用医学学科，其鉴定过程涉及法医病理、法医临床、法医物证、法医毒物以及法医影像等多种类型的数据。随着高通量测序、医学影像、质谱检测及电子信息技术的发展，法医学数据的规模和复杂程度不断增加，传统分析方法在处理效率、特征提取及多源数据综合分析等方面逐渐面临挑战。人工智能凭借强大的数据处理与模式识别能力，为解决上述问题提供了新的思路，并已逐步应用于死因推断、损伤识别、个体识别、年龄估计、毒物筛查等具体任务。
+
+然而，法医学鉴定结果具有重要的法律效力，因此人工智能的应用不仅需要关注模型性能，还必须考虑数据质量、算法可解释性、隐私保护、伦理规范及责任认定等问题。本文结合大数据时代的发展背景，对人工智能及深度学习技术在法医学中的主要应用进行概述，并分析其当前面临的挑战与未来发展方向，以期为人工智能与法医学的进一步融合提供参考。
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./figures/人工智能插图.png}
+  \caption{人工智能插图}
+\end{figure}
+
+\section{模板说明}
+
+本模板主要适用于一些课程的平时论文以及期末论文，默认页边距为2.5cm，中文宋体，英文Times New Roman，字号为12pt（小四）。
+
+\section{一些插入功能}
+\subsection{插入公式}
+
+一个常见的机器学习公式是线性回归的均方误差损失函数：
+
+$$
+\mathcal{L}(\mathbf{w}, b)=
+\frac{1}{n}
+\sum_{i=1}^{n}
+\left(
+y_i-\left(\mathbf{w}^\top \mathbf{x}_i+b\right)
+\right)^2
+\label{线性回归的均方误差损失函数}
+$$
+
+
+
+\subsection{插入图片}
+
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width =.4\textwidth]{figures/cqmu_logo.pdf}
+    \caption{重庆医科大学}
+    \label{fig:SYSU}
+\end{figure}
+
+
+\subsection{插入文本框}
+本模板定义了一个圆角灰底的文本框，使用简化命令\verb|\tbox{}|即可，如果你不喜欢，可以前往 \texttt{SYSUReport.sty}对其进行修改。
+
+\tbox{
+    这是一个圆角灰底的文本框
+}
+
+\subsection{插入表格}
+
+
+\begin{table}[!htbp]
+    \centering
+    \begin{tabular}{l|l}
+        \hline
+        文件名                  & 说明         \\
+        \hline
+        \texttt{main.tex}       & 主文件       \\
+        \texttt{reference.bib}  & 参考文献     \\
+        \texttt{SYSUReport.sty} & 文档格式控制 \\
+        \texttt{figures}        & 图片文件夹   \\
+        \hline
+    \end{tabular}
+    \caption{本模板文件组成}
+    \label{doc}
+\end{table}
+
+\section{定理环境}
+\begin{Theorem}
+\end{Theorem}
+
+\begin{Lemma}
+\end{Lemma}
+
+\begin{Corollary}
+\end{Corollary}
+
+\begin{Proposition}
+\end{Proposition}
+
+\begin{Definition}
+\end{Definition}
+
+\begin{Example}
+\end{Example}
+
+\begin{proof}
+\end{proof}
+
+\subsection{插入参考文献}
+
+例如：此处引用了文献~\cite{何清2014大数据下的机器学习算法综述}。此处引用了文献~\cite{刘志勇2019人工智能在法医学中的应用与展望}。此处引用了文献~\cite{任昕昕2026人工智能在法医毒物学中的应用与展望}。
+
+\par 引用过的文献会自动出现在参考文献中。
+
+\section{写在最后}
+
+\subsection{致谢}
+
+本项目在\href{https://github.com/jweihe/UCAS_Latex_Template}{中国科学院大学模板}的基础上进行修改。
+
+% =============================================
+% Part 5： 参考文献
+% =============================================
+%在reference文件中填写参考文献，此处自动生成
+
+\newpage
+\bibliographystyle{naturemag}
+\bibliography{reference}
+
+\end{document}
