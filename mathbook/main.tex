@@ -1,0 +1,614 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper,openany,oneside]{ctexbook}
+
+\usepackage{ncwu-pde}
+
+% ============================================================
+% BOX 调用示例
+% ============================================================
+% \begin{theorem}{定理标题}{theorem-label}
+%   定理内容。
+% \end{theorem}
+%
+% \begin{definition}{定义标题}{definition-label}
+%   定义内容。
+% \end{definition}
+%
+% \begin{lemma}{引理标题}{lemma-label}
+%   引理内容。
+% \end{lemma}
+%
+% \begin{proposition}{命题标题}{proposition-label}
+%   命题内容。
+% \end{proposition}
+%
+% \begin{corollary}{推论标题}{corollary-label}
+%   推论内容。
+% \end{corollary}
+%
+% \begin{example}{例题标题}{example-label}
+%   例题内容。
+% \end{example}
+%
+% \begin{remarkbox}
+%   注记内容。
+% \end{remarkbox}
+%
+% \begin{proofbox}
+%   证明内容。
+% \end{proofbox}
+%
+% \begin{keyeq}[关键公式标题]
+%   $$E=mc^2$$
+% \end{keyeq}
+%
+% \begin{methodbox}[方法名称]
+%   方法说明。
+% \end{methodbox}
+
+\begin{document}
+
+% 文档文本与元数据；所有排版样式位于 ncwu-pde.sty。
+\renewcommand{\NCWUtitle}{偏微分方程}
+\renewcommand{\NCWUtitleEnglish}{Partial Differential Equations}
+\renewcommand{\NCWUdocumentType}{讲\qquad 义}
+\renewcommand{\NCWUcourseType}{数学专业\quad 研究生课程讲义}
+\renewcommand{\NCWUauthor}{杨建伟}
+\renewcommand{\NCWUuniversity}{华北水利水电大学}
+\renewcommand{\NCWUschool}{数学与统计学院}
+\renewcommand{\NCWUschoolEnglish}{School of Mathematics and Statistics}
+\renewcommand{\NCWUdate}{\today}
+\renewcommand{\NCWUdescription}{本讲义面向数学专业硕士研究生，系统讲授偏微分方程的基本理论与方法。内容涵盖一阶方程、波动方程、热传导方程、位势方程四大经典主题，注重理论的严谨性与方法的实用性。}
+\renewcommand{\NCWUcourseInfo}{偏微分方程（48--64学时）}
+\renewcommand{\NCWUaudience}{数学、统计及相关专业硕士研究生}
+
+\makeNCWUfrontmatter
+
+% ============================================================
+%  CHAPTER 1: PDE基础概念
+% ============================================================
+\chapter{偏微分方程基础概念}
+
+\section{引言与记号}
+
+偏微分方程（Partial Differential Equation, PDE）是包含未知多元函数及其偏导数的方程。
+一般形式的 $k$ 阶偏微分方程可写为
+$$
+F\bigl(x, u, Du, D^{2}u, \dots, D^{k}u\bigr) = 0,
+$$
+其中 $x\in\R^{n}$ 为自变量，$u=u(x)$ 为未知函数。区别于常微分方程（ODE），
+PDE 的解空间通常为无穷维函数空间，这使得其理论与方法远比 ODE 丰富且复杂。
+
+\begin{definition}{二阶线性PDE的一般形式}{second-order}
+  设 $u=u(x),\; x\in\Omega\subset\R^{n}$。二阶线性PDE的一般形式为
+  $$
+  \sum_{i,j=1}^{n} a_{ij}(x)\,\ppde{u}{x_{i}\partial x_{j}}
+    + \sum_{i=1}^{n} b_{i}(x)\,\pde{u}{x_{i}} + c(x)u = f(x).
+  $$
+  当 $f\equiv 0$ 时称为齐次方程；否则为非齐次方程。
+\end{definition}
+
+记系数矩阵 $A(x) = (a_{ij}(x))_{n\times n}$，不失一般性可设 $A$ 为对称矩阵。
+根据 $A(x)$ 的特征值符号，对二阶方程进行分类。
+
+\begin{definition}{方程分类}{classification}
+  在点 $x_{0}\in\Omega$ 处：
+  \begin{itemize}
+    \item 若 $A(x_{0})$ 的 $n$ 个特征值同号（全正或全负），方程在该点称为\textbf{椭圆型}；
+    \item 若恰好 $n-1$ 个特征值同号，余下一个反号，称为\textbf{双曲型}；
+    \item 若 $A(x_{0})$ 为退化矩阵（$\det A=0$），称为\textbf{抛物型}。
+  \end{itemize}
+\end{definition}
+
+\begin{example}{经典例子}{classic-ex}
+  三大经典二阶PDE在 $\R^{n}$ 上分别属于不同类别：
+  \begin{enumerate}[label=(\roman*)]
+    \item \textbf{位势方程}（椭圆型）：$-\lap{u}=f$；
+    \item \textbf{波动方程}（双曲型）：$u_{tt}-c^{2}\lap{u}=0$；
+    \item \textbf{热传导方程}（抛物型）：$u_{t}-\kappa\lap{u}=0$。
+  \end{enumerate}
+\end{example}
+
+\section{定解条件}
+
+PDE 通常有无穷多个解，需要通过附加条件来确定唯一解。三类最重要的定解条件为：
+
+\begin{definition}{Cauchy问题}{cauchy}
+  给定初始超曲面 $\Gamma$ 上的函数值及其法向导数值，
+  求方程在 $\Gamma$ 邻域内的解，称为\textbf{Cauchy问题}（初值问题）。
+\end{definition}
+
+对发展型方程（双曲型、抛物型），还需指定边界条件。记 $\partial\Omega$ 为空间区域的边界，
+$n$ 为单位外法向量：
+
+\begin{itemize}
+  \item \textbf{Dirichlet 边界条件}：$u\big|_{\partial\Omega}=g$（第一类边界条件）；
+  \item \textbf{Neumann 边界条件}：$\displaystyle\pde{u}{n}\Big|_{\partial\Omega}=h$（第二类边界条件）；
+  \item \textbf{Robin 边界条件}：$\displaystyle\Bigl(\pde{u}{n}+\alpha u\Bigr)\Big|_{\partial\Omega}=k$（第三类边界条件）。
+\end{itemize}
+
+\begin{keyeq}[适定性 (Hadamard, 1902)]
+  一个PDE定解问题称为\textbf{适定的}（well-posed），如果它满足：
+  \begin{enumerate}[label=(\alph*)]
+    \item \textbf{存在性}：至少存在一个解；
+    \item \textbf{唯一性}：至多存在一个解；
+    \item \textbf{稳定性}：解连续依赖于给定的数据（初值、边值、非齐次项等）。
+  \end{enumerate}
+\end{keyeq}
+
+\section{适定性的基本框架}
+
+Hadamard 的三条标准构成了PDE理论研究的核心框架。不满足适定性的问题称为\textbf{不适定的}（ill-posed），
+典型的例子包括：
+
+\begin{itemize}
+  \item Laplace方程 Cauchy 问题（Hadamard 经典反例）；
+  \item 反向热传导方程；
+  \item 系数辨识反问题（属于现代不适定问题研究的核心领域）。
+\end{itemize}
+
+\begin{remarkbox}
+  现代PDE理论中，适定性概念可进一步推广至\textbf{弱解}框架。例如对椭圆方程，
+  通过变分原理和 Sobolev 空间理论，可在更广泛的函数类中建立适定性（Lax--Milgram 定理）。
+  这部分内容将在第四章详细讨论。
+\end{remarkbox}
+
+\section{叠加原理与Duhamel原理}
+
+\begin{theorem}{叠加原理}{superpos}
+  设 $L$ 为线性偏微分算子。若 $u_{1},u_{2}$ 满足 $Lu_{1}=f_{1},\;Lu_{2}=f_{2}$，
+  则对任意常数 $\alpha,\beta\in\R$，$\alpha u_{1}+\beta u_{2}$ 满足
+  $L(\alpha u_{1}+\beta u_{2}) = \alpha f_{1}+\beta f_{2}$。
+\end{theorem}
+
+叠加原理是线性PDE理论最基本也最有力的工具，使得我们可以
+将复杂问题分解为简单问题的线性组合。例如，求解齐次方程的通解+非齐次方程的特解结构。
+
+\begin{proofbox}
+  由偏导数的线性性可直接验证。对于一般形式的线性算子
+  $$
+  L = \sum_{|\alpha|\le k} a_{\alpha}(x)D^{\alpha},
+  $$
+  其线性性源于求导运算的线性性：$D^{\alpha}(\alpha u_{1}+\beta u_{2})
+  = \alpha D^{\alpha}u_{1} + \beta D^{\alpha}u_{2}$。
+\end{proofbox}
+
+\begin{proposition}{Duhamel 原理}{duhamel}
+  对于发展型线性方程 $u_{t} = Lu + f(x,t)$，其解可表为齐次方程的基本解
+  与非齐次项的时间卷积形式。
+\end{proposition}
+
+\newpage
+
+% ============================================================
+%  CHAPTER 2: 一阶偏微分方程
+% ============================================================
+\chapter{一阶偏微分方程}
+
+\section{特征线方法}
+
+考虑拟线性一阶方程
+$$
+a(x,y,u)\,\pde{u}{x} + b(x,y,u)\,\pde{u}{y} = c(x,y,u).
+$$
+
+\begin{definition}{特征线}{char-line}
+  上述方程的特征线是常微分方程组
+  $$
+  \ddx{x}{s}=a(x,y,u),\quad \ddx{y}{s}=b(x,y,u),\quad \ddx{u}{s}=c(x,y,u)
+  $$
+  的积分曲线。沿特征线，PDE 转化为 ODE。
+\end{definition}
+
+\begin{theorem}{特征线方法的基本定理}{char-thm}
+  设 $a,b,c\in C^{1}$，且初始曲线 $\Gamma$ 处处不与特征方向相切。
+  则 Cauchy 问题在 $\Gamma$ 的邻域内存在唯一 $C^{1}$ 解，
+  其解曲面由过 $\Gamma$ 上每点的特征线编织而成。
+\end{theorem}
+
+\begin{example}{输运方程}{transport}
+  考虑恒定系数输运方程
+  $$
+  u_{t} + v\,u_{x} = 0,\quad u(x,0)=\varphi(x).
+  $$
+  其特征方程为 $\ddx{x}{t}=v$，通解为 $u(x,t)=\varphi(x-vt)$。
+  解的图像是一个以速度 $v$ 沿 $x$ 正方向平移的波形。
+\end{example}
+
+\section{Burgers方程与激波}
+
+\begin{definition}{Burgers方程}{burgers}
+  $$
+  u_{t} + u\,u_{x} = 0,
+  $$
+  是最简单的非线性双曲型方程，广泛用于激波理论与交通流模型。
+\end{definition}
+
+即使初始数据 $\varphi\in C^{\infty}$，Burgers 方程的解也可能在有限时间内产生奇性。
+设特征线斜率为 $u_{0}(x)$，两特征线相交的时刻即为激波形成时刻：
+
+\begin{keyeq}[激波形成条件]
+  若存在 $x_{1}<x_{2}$ 使得 $\varphi'(x_{1})<0<\varphi'(x_{2})$，
+  则解在有限时间 $T_{*}$ 内发生爆破（blow-up），激波形成时间为
+  $$
+  T_{*} = \min_{x\in\R}\,\frac{1}{\max\{-\varphi'(x),\,0\}}.
+  $$
+\end{keyeq}
+
+\begin{remarkbox}
+  激波形成后，经典解不再存在。此时需要引入\textbf{弱解}（weak solution）的概念，
+  并附加熵条件（entropy condition）以选出物理相关的唯一弱解。
+  这在气体动力学、浅水波方程等实际问题中具有核心意义。
+\end{remarkbox}
+
+\section{完全积分与Hamilton--Jacobi方程}
+
+\begin{definition}{Hamilton--Jacobi 方程}{hj}
+  一阶完全非线性方程的典型代表：
+  $$
+  u_{t} + H(Du, x) = 0,
+  $$
+  其中 Hamilton 函数 $H:\R^{n}\times\R^{n}\to\R$ 给定。
+\end{definition}
+
+\begin{theorem}{粘性解的唯一性}{viscosity}
+  在适当的连续性假设下，Hamilton--Jacobi 方程的粘性解
+  （viscosity solution）是存在且唯一的。此概念由 Crandall--Lions (1983) 引入，
+  已成为处理一阶完全非线性PDE的标准理论框架。
+\end{theorem}
+
+\begin{methodbox}[特征线法求解步骤]
+  \begin{enumerate}[label=\textbf{\sffamily\small 步骤 \arabic*.}, leftmargin=*]
+    \item 写出特征 ODE 系统；
+    \item 将初始（边界）曲线参数化；
+    \item 沿初始曲线求解 ODE，得到参数形式的解；
+    \item 消去参数，得到 $u=u(x,y)$ 的显式（或隐式）表达式；
+    \item 验证 Jacobi 行列式非零以确保局部可逆。
+  \end{enumerate}
+\end{methodbox}
+
+\newpage
+
+% ============================================================
+%  CHAPTER 3: 波动方程
+% ============================================================
+\chapter{波动方程}
+
+\section{一维波动方程与d'Alembert公式}
+
+考虑一维齐次波动方程的 Cauchy 问题：
+\begin{equation}\label{eq:wave1d}
+  u_{tt} - c^{2}u_{xx} = 0,\quad x\in\R,\; t>0,
+\end{equation}
+满足初始条件 $u(x,0)=\varphi(x),\; u_{t}(x,0)=\psi(x)$。
+
+\begin{theorem}{d'Alembert 公式}{dalembert}
+  问题 \eqref{eq:wave1d} 的唯一 $C^{2}$ 解由下式给出：
+  \begin{equation}\label{eq:dalembert}
+    u(x,t) = \frac{1}{2}\bigl[\varphi(x+ct)+\varphi(x-ct)\bigr]
+           + \frac{1}{2c}\int_{x-ct}^{x+ct} \psi(s)\,\d s.
+  \end{equation}
+\end{theorem}
+
+\begin{proofbox}
+  作变量代换 $\xi=x+ct,\;\eta=x-ct$，方程化为 $u_{\xi\eta}=0$。
+  故通解为 $u=F(\xi)+G(\eta)=F(x+ct)+G(x-ct)$。
+  代入初始条件：
+  \begin{align*}
+    u(x,0) &= F(x)+G(x) = \varphi(x),\\
+    u_{t}(x,0) &= cF'(x)-cG'(x) = \psi(x).
+  \end{align*}
+  积分第二式得 $F(x)-G(x)=\frac{1}{c}\int_{x_{0}}^{x}\psi(s)\,\d s + C$。
+  与第一式联立即得 \eqref{eq:dalembert}。
+\end{proofbox}
+
+\begin{corollary}{依赖区域与影响区域}{domain}
+  解在 $(x_{0},t_{0})$ 处的值仅依赖于初始数据在区间 $[x_{0}-ct_{0},\,x_{0}+ct_{0}]$ 上的取值（依赖区域）；
+  反过来，初始点 $x_{0}$ 处的扰动仅影响时空锥体 $\abs{x-x_{0}}\le ct$ 内的解（影响区域/影响锥）。
+  这是波动方程有限传播速度的体现，传播速度恰为 $c$。
+\end{corollary}
+
+\section{能量方法与唯一性}
+
+\begin{definition}{能量泛函}{energy}
+  对于一维波动方程，定义\textbf{能量泛函}：
+  $$
+  E(t) = \frac{1}{2}\int_{\R} \bigl(u_{t}^{2} + c^{2}u_{x}^{2}\bigr)\,\d x.
+  $$
+\end{definition}
+
+\begin{theorem}{能量守恒}{energy-cons}
+  若 $u$ 的支集关于 $x$ 紧致，则 $E(t)$ 为常数：
+  $$
+  \ddx{E}{t} = 0.
+  $$
+\end{theorem}
+
+\begin{proofbox}
+  直接计算：
+  \begin{align*}
+    E'(t) &= \int_{\R} \bigl(u_{t}u_{tt} + c^{2}u_{x}u_{xt}\bigr)\,\d x
+           = \int_{\R} u_{t}u_{tt}\,\d x + c^{2}\Bigl[u_{x}u_{t}\Bigr]_{-\infty}^{\infty}
+             - c^{2}\int_{\R} u_{xx}u_{t}\,\d x \\
+          &= \int_{\R} u_{t}\bigl(u_{tt}-c^{2}u_{xx}\bigr)\,\d x = 0. \quad\blacksquare
+  \end{align*}
+\end{proofbox}
+
+能量守恒直接蕴含了齐次初边值问题的唯一性：两个解之差满足零初边条件的齐次方程，
+其能量恒为零，故解恒为零。
+
+\section{高维波动方程与Kirchhoff公式}
+
+\begin{theorem}{三维波动方程的Kirchhoff公式}{kirchhoff}
+  对于三维齐次波动方程 $u_{tt}-c^{2}\lap{u}=0$，
+  初始条件 $u(x,0)=\varphi(x),\; u_{t}(x,0)=\psi(x)$，其解为
+  \begin{align*}
+    u(x,t) = \frac{1}{4\pi c^{2}t}\iint_{\partial B_{ct}(x)} \psi(y)\,\d S_{y}
+            + \pde{}{t}\Bigl(\frac{1}{4\pi c^{2}t}\iint_{\partial B_{ct}(x)} \varphi(y)\,\d S_{y}\Bigr).
+  \end{align*}
+  此即球面均值法（method of spherical means）的结果。
+\end{theorem}
+
+\begin{remarkbox}
+  三维空间中的波动传播满足\textbf{强Huygens原理}：
+  初始扰动在时刻 $t$ 仅影响球面 $\partial B_{ct}(x_{0})$ 上的点，
+  球面经过后扰动完全消失。而二维（如水面波）不满足强Huygens原理——
+  扰动会留下\u201c尾迹\u201d（aftersound），这正是空间维数对波动行为的深刻影响。
+\end{remarkbox}
+
+\newpage
+
+% ============================================================
+%  CHAPTER 4: 热传导方程
+% ============================================================
+\chapter{热传导方程}
+
+\section{热方程的基本解}
+
+考虑 $\R^{n}$ 上的齐次热传导方程：
+\begin{equation}\label{eq:heat}
+  u_{t} - \kappa\lap{u} = 0,\quad x\in\R^{n},\; t>0,
+\end{equation}
+满足初始条件 $u(x,0)=g(x)$。
+
+\begin{definition}{热核（基本解）}{heat-kernel}
+  热传导方程 \eqref{eq:heat} 的基本解（热核）为
+  $$
+  \Phi(x,t) = \frac{1}{(4\pi\kappa t)^{n/2}}\,
+              \exp\!\Bigl(-\frac{|x|^{2}}{4\kappa t}\Bigr),\quad t>0.
+  $$
+\end{definition}
+
+\begin{theorem}{热方程初值问题的解}{heat-sol}
+  若 $g\in C(\R^{n})\cap L^{\infty}(\R^{n})$，则 \eqref{eq:heat} 的 Cauchy 问题的解为
+  \begin{equation}\label{eq:heat-conv}
+    u(x,t) = \int_{\R^{n}} \Phi(x-y,t)\,g(y)\,\d y
+           = (\Phi(\cdot,t) * g)(x).
+  \end{equation}
+\end{theorem}
+
+\section{极大值原理}
+
+\begin{theorem}{热方程的极大值原理}{max-principle}
+  设 $u\in C^{2,1}(U_{T})\cap C(\overline{U}_{T})$ 满足 $u_{t}-\kappa\lap{u}\le 0$
+  于 $U_{T}=U\times(0,T]$，则 $u$ 在 $\overline{U}_{T}$ 上的最大值必在\textbf{抛物边界}
+  $\partial_{p}U_{T}=(\overline{U}\times\{0\})\cup(\partial U\times[0,T])$ 上达到：
+  $$
+  \max_{\overline{U}_{T}} u = \max_{\partial_{p}U_{T}} u.
+  $$
+\end{theorem}
+
+\begin{corollary}{唯一性与比较原理}{heat-unique}
+  极大值原理蕴含：
+  \begin{itemize}
+    \item \textbf{唯一性}：热方程初边值问题的解是唯一的；
+    \item \textbf{比较原理}：若两个有界解 $u\le v$ 在抛物边界上成立，
+          则 $u\le v$ 在 $\overline{U}_{T}$ 上处处成立；
+    \item \textbf{无穷传播速度}：若 $g\ge 0,\;g\not\equiv 0$ 且支集紧致，
+          则对所有 $t>0$，$u(x,t)>0$ 在 $\R^{n}$ 上处处成立。
+  \end{itemize}
+\end{corollary}
+
+\begin{remarkbox}
+  极大值原理是二阶抛物型方程理论的基石。与椭圆方程的极大值原理不同，
+  抛物型极大值原理需要考虑时间方向的特殊性——最大值一定在边界或初始时刻达到。
+  这一深刻性质在正则性理论和解的渐近行为分析中起着核心作用。
+\end{remarkbox}
+
+\section{分离变量法}
+
+对一维有限区间上的齐次热传导问题：
+$$
+\begin{cases}
+  u_{t} = \kappa u_{xx}, & 0<x<L,\; t>0,\\[2pt]
+  u(0,t)=u(L,t)=0, & t\ge 0,\\[2pt]
+  u(x,0)=f(x), & 0\le x\le L,
+\end{cases}
+$$
+
+令 $u(x,t)=X(x)T(t)$，分离变量得
+$$
+\frac{T'}{\kappa T} = \frac{X''}{X} = -\lambda.
+$$
+
+\begin{methodbox}[分离变量法求解步骤]
+  \begin{enumerate}[label=\textbf{\sffamily\small 步骤 \arabic*.}, leftmargin=*]
+    \item 设解形如 $u(x,t)=X(x)T(t)$，代入方程；
+    \item 分离变量，令等式两端等于常数 $-\lambda$；
+    \item 由边界条件推导 $X(x)$ 的 Sturm--Liouville 本征值问题；
+    \item 求解 $X_{n}(x)=\sin(n\pi x/L)$，本征值 $\lambda_{n}=(n\pi/L)^{2}$；
+    \item 由 $T'(t)=-\kappa\lambda_{n}T(t)$ 得 $T_{n}(t)=e^{-\kappa\lambda_{n}t}$；
+    \item 由叠加原理构造级数解，并由初始条件确定 Fourier 系数。
+  \end{enumerate}
+\end{methodbox}
+
+\begin{theorem}{级数解}{series-sol}
+  上述热传导初边值问题的解可展开为 Fourier 正弦级数：
+  $$
+  u(x,t) = \sum_{n=1}^{\infty} b_{n}\,
+           \exp\!\Bigl(-\kappa\Bigl(\frac{n\pi}{L}\Bigr)^{2}t\Bigr)\,
+           \sin\!\Bigl(\frac{n\pi x}{L}\Bigr),
+  $$
+  其中系数 $b_{n}=\frac{2}{L}\int_{0}^{L} f(x)\sin\!\bigl(\frac{n\pi x}{L}\bigr)\,\d x$。
+\end{theorem}
+
+\begin{proofbox}
+  由 Sturm--Liouville 理论，$\{\sin(n\pi x/L)\}_{n=1}^{\infty}$
+  构成 $L^{2}(0,L)$ 的完备正交基。代入初始条件即得 Fourier 正弦展开。$\blacksquare$
+\end{proofbox}
+
+\section{解的渐近行为}
+
+从级数解可以看出，当 $t\to\infty$ 时，所有 Fourier 模均指数衰减：
+\begin{itemize}
+  \item 衰减最快的是一阶模（$n=1$），衰减率为 $\exp(-\kappa\pi^{2}t/L^{2})$；
+  \item 高阶模衰减更快，经过足够长时间后，解由一阶模主导：
+        $u(x,t)\sim b_{1}e^{-\kappa\pi^{2}t/L^{2}}\sin(\pi x/L)$；
+  \item 这一现象说明：热方程具有极强的\textbf{光滑化效应}和\textbf{遗忘初始条件}的能力。
+\end{itemize}
+
+\begin{keyeq}[无穷传播速度 vs. 有限传播速度]
+  \begin{center}
+  \begin{tabular}{lcc}
+  \toprule
+  \textbf{性质} & \textbf{热传导方程} & \textbf{波动方程} \\
+  \midrule
+  传播速度 & 无穷大（瞬时影响全空间） & 有限（$\le c$）\\
+  光滑化效应 & 是（$C^{\infty}$ for $t>0$） & 否（奇性沿特征线传播）\\
+  极大值原理 & 成立 & 不成立\\
+  时间可逆性 & 否 & 是\\
+  \bottomrule
+  \end{tabular}
+  \end{center}
+\end{keyeq}
+
+\newpage
+
+% ============================================================
+%  CHAPTER 5: 椭圆型方程
+% ============================================================
+\chapter{椭圆型方程}
+
+\section{Laplace方程与调和函数}
+
+\begin{definition}{调和函数}{harmonic}
+  设 $\Omega\subset\R^{n}$ 为开集，$u\in C^{2}(\Omega)$。若 $u$ 满足
+  $$
+  \lap{u} = \sum_{i=1}^{n}\ppde{u}{x_{i}} = 0\quad\text{在 }\Omega\text{ 内},
+  $$
+  则称 $u$ 为 $\Omega$ 上的\textbf{调和函数}。
+\end{definition}
+
+\begin{theorem}{均值定理}{mean-value}
+  设 $u$ 为 $\Omega$ 上的调和函数。则对任意球 $\overline{B}_{r}(x)\subset\Omega$，
+  \begin{align*}
+    u(x) &= \frac{1}{|\partial B_{r}(x)|}\int_{\partial B_{r}(x)} u(y)\,\d S_{y}
+          \quad\text{（球面均值）},\\
+    u(x) &= \frac{1}{|B_{r}(x)|}\int_{B_{r}(x)} u(y)\,\d y
+          \quad\text{（球体均值）}.
+  \end{align*}
+\end{theorem}
+
+均值定理是调和函数理论的出发点，由其可直接推出：
+
+\begin{corollary}{强极大值原理与 Liouville 定理}{strong-max}
+  \begin{enumerate}[label=(\alph*)]
+    \item \textbf{强极大值原理}：非常值的调和函数在其定义域内部不能取得最大值或最小值；
+    \item \textbf{Liouville定理}：$\R^{n}$ 上的有界调和函数必为常数。
+  \end{enumerate}
+\end{corollary}
+
+\section{Dirichlet问题的变分框架}
+
+考虑 Poisson 方程的齐次 Dirichlet 问题
+\begin{equation}\label{eq:poisson}
+  \begin{cases}
+    -\lap{u} = f, &\text{in }\Omega,\\
+    u = 0, &\text{on }\partial\Omega.
+  \end{cases}
+\end{equation}
+
+定义能量泛函
+$$
+I[u] = \frac{1}{2}\int_{\Omega} |\grad{u}|^{2}\,\d x - \int_{\Omega} fu\,\d x,
+\qquad u\in H_{0}^{1}(\Omega).
+$$
+
+\begin{theorem}{Dirichlet原理}{dirichlet-principle}
+  问题 \eqref{eq:poisson} 的弱解等价于能量泛函 $I[u]$ 在 $H_{0}^{1}(\Omega)$ 中的极小元：
+  $$
+  u = \argmin_{v\in H_{0}^{1}(\Omega)} I[v].
+  $$
+\end{theorem}
+
+\begin{theorem}{Lax--Milgram 定理}{lax-milgram}
+  设 $H$ 为 Hilbert 空间，$a(\cdot,\cdot)$ 为 $H$ 上的强制有界双线性型，
+  $F\in H'$。则存在唯一的 $u\in H$ 使得
+  $$
+  a(u,v) = \inner{F}{v},\quad \forall v\in H.
+  $$
+  特别地，对于 $-\lap{}$ 算子的弱形式，
+  $a(u,v)=\int_{\Omega}\grad{u}\cdot\grad{v}\,\d x$，
+  其强制性由 Poincar\'e 不等式保证。
+\end{theorem}
+
+\section{弱解的正则性}
+
+\begin{definition}{Sobolev空间}{sobolev}
+  \begin{align*}
+    W^{k,p}(\Omega) &= \set{u\in L^{p}(\Omega) : D^{\alpha}u\in L^{p}(\Omega),\;
+                        \forall|\alpha|\le k},\\
+    H^{k}(\Omega) &= W^{k,2}(\Omega),\qquad
+    H_{0}^{1}(\Omega) = \overline{C_{c}^{\infty}(\Omega)}^{\|\cdot\|_{H^{1}}}.
+  \end{align*}
+\end{definition}
+
+\begin{theorem}{内部正则性 (Weyl引理)}{weyl}
+  设 $u\in L_{\text{loc}}^{1}(\Omega)$ 满足
+  $\int_{\Omega} u\,\lap{\varphi}\,\d x = 0,\;\forall\varphi\in C_{c}^{\infty}(\Omega)$。
+  则 $u\in C^{\infty}(\Omega)$ 且 $\lap{u}=0$。换言之，弱调和蕴含光滑。
+\end{theorem}
+
+\begin{remarkbox}
+  Weyl 引理是现代椭圆正则性理论的起点。结合 Sobolev 嵌入定理和
+  Schauder 估计，可进一步得到：
+  若 $f\in C^{k,\alpha}(\Omega)$，则 $-\lap{u}=f$ 的任何弱解
+  $u$ 必属于 $C^{k+2,\alpha}_{\text{loc}}(\Omega)$。
+  \medskip
+
+  这种\textbf{自动提升正则性}的性质是椭圆型方程区别于双曲型和抛物型方程的一个深刻特征。
+\end{remarkbox}
+
+% ============================================================
+%  APPENDIX
+% ============================================================
+\appendix
+\chapter{常用不等式与嵌入定理}
+
+\section{Sobolev不等式}
+\begin{itemize}
+  \item $W^{1,p}(\R^{n})\hookrightarrow L^{p^{*}}(\R^{n})$,
+        $\frac{1}{p^{*}}=\frac{1}{p}-\frac{1}{n}$（$p<n$）；
+  \item $W^{1,p}(\R^{n})\hookrightarrow C^{0,\alpha}(\R^{n})$,
+        $\alpha=1-\frac{n}{p}$（$p>n$）；
+  \item Poincar\'e 不等式：$\|u\|_{L^{2}}\le C_{\Omega}\|\grad{u}\|_{L^{2}},\;
+        \forall u\in H_{0}^{1}(\Omega)$。
+\end{itemize}
+
+\chapter{常用函数空间}
+\begin{align*}
+  L^{p}(\Omega) &= \Bigl\{f:\Omega\to\R:\int_{\Omega}|f|^{p}\,\d x<\infty\Bigr\},
+  \quad 1\le p<\infty,\\
+  L^{\infty}(\Omega) &= \bigl\{f:\Omega\to\R:\operatorname{ess\,sup}_{\Omega}|f|<\infty\bigr\},\\
+  C^{k}(\Omega) &= \set{f:\Omega\to\R: D^{\alpha}f\in C(\Omega),\;\forall|\alpha|\le k},\\
+  C^{k,\alpha}(\Omega) &= \bigl\{f\in C^{k}(\Omega): \text{H\"older 连续且指数为 }\alpha\bigr\}.
+\end{align*}
+
+% ============================================================
+%  BIBLIOGRAPHY
+% ============================================================
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,262 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ncwu-pde}[2026/08/27 NCWU PDE lecture-notes style]
+
+\RequirePackage[top=2.3cm, bottom=2.0cm, left=2.2cm, right=2.2cm,
+            headheight=14pt, headsep=8pt, footskip=14pt]{geometry}
+\RequirePackage[svgnames]{xcolor}
+\RequirePackage{eso-pic}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems, xparse, raster}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{amsmath, amssymb, amsthm, mathtools}
+\RequirePackage{mathrsfs}
+\RequirePackage{bm}
+\RequirePackage{esint}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{enumitem}
+\setlist{nosep, leftmargin=2em, itemsep=2pt, topsep=4pt}
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NCWUblue,
+  urlcolor=NCWUteal,
+  citecolor=NCWUcoral}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
+\RequirePackage{fancyvrb}
+
+% ── Color Palette ───────────────────────────────────────────
+\definecolor{NCWUblue}{HTML}{1A3A6B}      % 深蓝主色
+\definecolor{NCWUlight}{HTML}{2B5C9E}     % 亮蓝
+\definecolor{NCWUsky}{HTML}{5B9BD5}       % 天蓝
+\definecolor{NCWUteal}{HTML}{0D7377}      % 青绿
+\definecolor{NCWUcoral}{HTML}{E85D75}     % 珊瑚红
+\definecolor{NCWUgold}{HTML}{D4A843}      % 金色
+\definecolor{NCWUorange}{HTML}{E8943A}    % 橙色
+\definecolor{NCWUpurple}{HTML}{7B4F9D}    % 紫色
+\definecolor{NCWUgreen}{HTML}{2E8B57}     % 绿色
+\definecolor{NCWUdark}{HTML}{0D1B2A}      % 封面暗色
+\definecolor{NCWUgray}{HTML}{F0F2F5}      % 浅灰背景
+\definecolor{NCWUcream}{HTML}{FDFBF7}     % 奶油色
+\definecolor{NCWUcyan}{HTML}{00D4E0}      % 电光青
+\definecolor{NCWUmagenta}{HTML}{C44CC4}   % 品红
+
+% ── Theorem Boxes (tcolorbox) ──────────────────────────────
+%   Each theorem environment has fully-inlined options
+%   to avoid pgfkeys nesting / expansion issues
+\newtcbtheorem[auto counter, number within=chapter]{theorem}{定理}{
+  enhanced, breakable, arc=3pt, boxrule=0.8pt,
+  top=10pt, bottom=6pt, left=8pt, right=8pt,
+  before skip=10pt, after skip=10pt,
+  colback=NCWUblue!8!white, colframe=NCWUblue!60!white,
+  coltitle=white, fonttitle=\bfseries\sffamily\small,
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUblue, sharp corners,
+    top=1.5pt, bottom=1.5pt, left=3pt, right=3pt}}{thm}
+
+\newtcbtheorem[auto counter, number within=chapter]{definition}{定义}{
+  enhanced, breakable, arc=3pt, boxrule=0.8pt,
+  top=10pt, bottom=6pt, left=8pt, right=8pt,
+  before skip=10pt, after skip=10pt,
+  colback=NCWUteal!8!white, colframe=NCWUteal!60!white,
+  coltitle=white, fonttitle=\bfseries\sffamily\small,
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUteal, sharp corners,
+    top=1.5pt, bottom=1.5pt, left=3pt, right=3pt}}{def}
+
+\newtcbtheorem[auto counter, number within=chapter]{lemma}{引理}{
+  enhanced, breakable, arc=3pt, boxrule=0.8pt,
+  top=10pt, bottom=6pt, left=8pt, right=8pt,
+  before skip=10pt, after skip=10pt,
+  colback=NCWUpurple!8!white, colframe=NCWUpurple!60!white,
+  coltitle=white, fonttitle=\bfseries\sffamily\small,
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUpurple, sharp corners,
+    top=1.5pt, bottom=1.5pt, left=3pt, right=3pt}}{lem}
+
+\newtcbtheorem[auto counter, number within=chapter]{proposition}{命题}{
+  enhanced, breakable, arc=3pt, boxrule=0.8pt,
+  top=10pt, bottom=6pt, left=8pt, right=8pt,
+  before skip=10pt, after skip=10pt,
+  colback=NCWUsky!8!white, colframe=NCWUsky!60!white,
+  coltitle=white, fonttitle=\bfseries\sffamily\small,
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUsky, sharp corners,
+    top=1.5pt, bottom=1.5pt, left=3pt, right=3pt}}{prop}
+
+\newtcbtheorem[auto counter, number within=chapter]{corollary}{推论}{
+  enhanced, breakable, arc=3pt, boxrule=0.8pt,
+  top=10pt, bottom=6pt, left=8pt, right=8pt,
+  before skip=10pt, after skip=10pt,
+  colback=NCWUcoral!8!white, colframe=NCWUcoral!60!white,
+  coltitle=white, fonttitle=\bfseries\sffamily\small,
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUcoral, sharp corners,
+    top=1.5pt, bottom=1.5pt, left=3pt, right=3pt}}{cor}
+
+\newtcbtheorem[auto counter, number within=chapter]{example}{例}{
+  enhanced, breakable, arc=3pt, boxrule=0.8pt,
+  top=10pt, bottom=6pt, left=8pt, right=8pt,
+  before skip=10pt, after skip=10pt,
+  colback=NCWUgreen!8!white, colframe=NCWUgreen!60!white,
+  coltitle=white, fonttitle=\bfseries\sffamily\small,
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUgreen, sharp corners,
+    top=1.5pt, bottom=1.5pt, left=3pt, right=3pt}}{ex}
+
+\newtcolorbox{remarkbox}[1][]{
+  enhanced, breakable, before skip=8pt, after skip=8pt,
+  colback=NCWUorange!8!white, colframe=NCWUorange!40!white,
+  left=4mm, right=4mm, top=3pt, bottom=3pt, arc=3pt, boxrule=0.6pt,
+  title={\sffamily\small\bfseries\color{NCWUorange}注记}, #1}
+
+\newtcolorbox{proofbox}{
+  enhanced, breakable, before skip=6pt, after skip=8pt,
+  colback=NCWUgray!80!white, colframe=NCWUgray!60!white,
+  left=4mm, right=4mm, top=3pt, bottom=3pt, arc=3pt, boxrule=0.4pt,
+  title={\sffamily\small\bfseries\color{NCWUblue}证明},
+  attach boxed title to top left={xshift=4mm, yshift=-2mm},
+  boxed title style={colback=NCWUgray!80!white, boxrule=0pt},
+  after upper={\hfill$\blacksquare$}}
+
+\newtcolorbox{keyeq}[1][]{
+  enhanced, before skip=10pt, after skip=10pt,
+  colback=NCWUgold!10!white, colframe=NCWUgold!60!white,
+  coltitle=NCWUdark, fonttitle=\sffamily\bfseries\small,
+  attach boxed title to top right={xshift=-4mm, yshift=-2.5mm},
+  boxed title style={colback=NCWUgold!30!white, sharp corners, boxrule=0.4pt},
+  top=8pt, bottom=6pt, left=6pt, right=6pt, arc=3pt, boxrule=0.6pt,
+  title={#1},}
+
+\newtcolorbox{methodbox}[1][]{
+  enhanced, before skip=10pt, after skip=10pt,
+  colback=NCWUcream, colframe=NCWUgold!50!white,
+  left=4mm, right=4mm, top=6pt, bottom=4pt, arc=3pt, boxrule=0.8pt,
+  title={\sffamily\small\bfseries\color{NCWUgold}方法: #1}}
+
+% ── Chapter/Section Formatting ──────────────────────────────
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\sffamily\color{NCWUblue}}
+  {\filleft\fontsize{72}{72}\selectfont\color{NCWUblue!50!white}\thechapter}
+  {0pt}
+  {\filcenter\titlerule[2pt]\vskip 6pt}
+  [\vskip 4pt{\color{NCWUblue!60}\titlerule[0.8pt]}\vskip -16pt]
+
+\titleformat{\section}
+  {\normalfont\Large\sffamily\bfseries\color{NCWUblue}}
+  {\color{NCWUlight}\thesection\quad}{0pt}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\sffamily\bfseries\color{NCWUlight}}
+  {\thesubsection\quad}{0pt}{}
+
+% ── Header/Footer ──────────────────────────────────────────
+% Metadata is supplied by content.tex so this file contains presentation only.
+\newcommand{\NCWUtitle}{}
+\newcommand{\NCWUtitleEnglish}{}
+\newcommand{\NCWUdocumentType}{}
+\newcommand{\NCWUcourseType}{}
+\newcommand{\NCWUauthor}{}
+\newcommand{\NCWUuniversity}{}
+\newcommand{\NCWUschool}{}
+\newcommand{\NCWUschoolEnglish}{}
+\newcommand{\NCWUdate}{\today}
+\newcommand{\NCWUdescription}{}
+\newcommand{\NCWUcourseInfo}{}
+\newcommand{\NCWUaudience}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{NCWUblue!70}
+  \ifnum\value{chapter}>0 第\thechapter 章\quad\leftmark\fi}
+\fancyhead[R]{\sffamily\footnotesize\color{NCWUblue!50}\NCWUuniversity\quad \NCWUschool}
+\fancyfoot[C]{\sffamily\footnotesize\color{NCWUblue!40}\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{NCWUblue!30}\leaders\hrule height \headrulewidth\hfill}}
+
+% ── Custom Math Commands ────────────────────────────────────
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\pde}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{d #1}{d #2}}
+\newcommand{\ppde}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\lap}[1]{\Delta #1}
+\newcommand{\grad}[1]{\nabla #1}
+\newcommand{\diver}[1]{\nabla\cdot #1}
+\newcommand{\curl}[1]{\nabla\times #1}
+\newcommand{\ihm}[1]{\int_{-\infty}^{\infty} \!\! #1 \,}
+\newcommand{\inner}[2]{\langle #1, #2 \rangle}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Lip}{\operatorname{Lip}}
+\renewcommand{\d}{\mathrm{d}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% ── Spacing Tuning ──────────────────────────────────────────
+\setlength{\parskip}{2pt plus 1pt}
+\setlength{\parindent}{2em}
+\setlength{\abovedisplayskip}{6pt plus 2pt}
+\setlength{\belowdisplayskip}{6pt plus 2pt}
+\setlength{\abovedisplayshortskip}{3pt plus 1pt}
+\setlength{\belowdisplayshortskip}{3pt plus 1pt}
+
+% ============================================================
+%  COVER PAGE
+% ============================================================
+
+\newcommand{\makeNCWUfrontmatter}{%
+% Insert the pre-rendered A4 cover; no cover graphics are drawn by LaTeX.
+\thispagestyle{empty}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{cover.png}%
+  }%
+}
+\null
+\newpage
+
+% ── Copyright / blank verso ──
+\thispagestyle{empty}
+\vspace*{\stretch{1}}
+\begin{center}
+  {\sffamily\large\color{NCWUblue}\bfseries 编 写 说 明}
+
+  \vspace{12pt}
+  \begin{minipage}{0.72\linewidth}
+    \sffamily\small\color{black!70}
+    \NCWUdescription\\
+    \medskip
+    适用课程：\NCWUcourseInfo\\
+    适用对象：\NCWUaudience
+  \end{minipage}
+\end{center}
+\vspace*{\stretch{2}}
+\newpage
+
+% ============================================================
+%  TABLE OF CONTENTS
+% ============================================================
+\pagestyle{empty}
+{
+  \hypersetup{linkcolor=NCWUblue}
+  \sffamily
+  \tableofcontents
+}
+\newpage
+
+% Switch to main page style
+\pagestyle{fancy}
+\pagenumbering{arabic}
+}
+
+% ============================================================
+%  CHAPTER 1: PDE基础概念
+% ============================================================
