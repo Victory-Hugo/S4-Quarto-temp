@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage{ctex}
+\usepackage{sci-manuscript}
+\addbibresource{references.bib}
+
+\ManuscriptTitle{\LaTeX 模板标题}
+
+\ManuscriptAuthors{%
+  \AuthorORCID{Lintao Luo}{1,*}{0009-0001-5790-4866}
+}
+
+\ManuscriptAffiliations{%
+  \Affiliation{1}{giantlinlinlin@gmail.com}%
+}
+
+\Keywords{关键词1; 关键词2; 关键词3}
+
+% \Correspondence{*Corresponding author: author@example.edu}
+
+\begin{document}
+
+\MakeManuscriptTitle
+
+\begin{manuscriptabstract}
+这是一个方便人工智能编辑的\LaTeX 模板，可以直接用于撰写科学论文。该模板支持中文和英文混排。撰写时把本段替换为真正的摘要。
+\end{manuscriptabstract}
+
+\section{Results}
+在这里撰写你的SCI结果部分。必要时引用参考文献，例如\parencite{aton2025}。
+
+
+\section{Materials and Methods}
+
+\subsection{Population structure}
+Population structure was inferred using \software{ADMIXTURE} (v1.3.0)
+for ancestral population numbers ranging from
+$K = 2$ to $K = 10$.
+
+\subsection{Coalescence time estimation}
+The coalescence time of each lineage was estimated using a $\rho$ statistic-based
+method \parencite{forster1996} and an ML method \parencite{behar2012} with the
+Soares rate for complete mtDNA sequences (\SI{3624}{years} per substitution,
+corrected for purifying selection) \parencite{soares2009}.
+
+\printbibliography[title={References}]
+
+\end{document}
