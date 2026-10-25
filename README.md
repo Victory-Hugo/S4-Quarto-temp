@@ -7,6 +7,7 @@
 - `ctexart_1`: 中文 XeLaTeX 预印本模板
 - `cbook_1`: 中文 XeLaTeX 书籍模板（三国演义）
 - `cjcart`: 中文 XeLaTeX 文章模板
+- `CQMU-week-report`: 重医科研周报（进度汇报）XeLaTeX 模板
 
 ## 使用方法
 
@@ -14,6 +15,7 @@
 quarto use template Victory-Hugo/S4-Quarto-temp/ctexart_1
 quarto use template Victory-Hugo/S4-Quarto-temp/cbook_1
 quarto use template Victory-Hugo/S4-Quarto-temp/cjcart
+quarto use template Victory-Hugo/S4-Quarto-temp/CQMU-week-report
 ```
 
 生成后可渲染：

@@ -1,0 +1,14 @@
+title: CQMU-week-report（重医周报 PDF）
+author: Hugo
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    pdf:
+      pdf-engine: xelatex
+      documentclass: CQMUReport
+      colorlinks: true
+      link-citations: true
+      toc: false
+      number-sections: false
+      include-in-header: preamble.tex
