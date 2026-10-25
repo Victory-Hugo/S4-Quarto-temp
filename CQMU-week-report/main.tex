@@ -1,0 +1,50 @@
+\documentclass{CQMUReport}  %! 使用xelatex编译
+\usepackage{zhlipsum}
+\setlength{\headheight}{30pt}
+\setmainfont{Times New Roman}
+\definecolor{titleblue}{HTML}{1F4E9C}
+\ctexset{
+  section={beforeskip=1.4ex plus 0.3ex,afterskip=0.8ex,format=\color{titleblue}\bfseries\zihao{4}\raggedright},
+  subsection={beforeskip=1.4ex plus 0.3ex,afterskip=0.8ex,format=\color{titleblue}\bfseries\zihao{-4}\raggedright},
+  subsubsection={beforeskip=1.4ex plus 0.3ex,afterskip=0.8ex,format=\color{titleblue}\bfseries\raggedright},
+}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3em}
+
+% 页眉页脚
+\headl{进度汇报}
+\headc{\raisebox{-0.3\height}{\includegraphics[height=0.75cm]{figures/cqmu_logo.pdf}}}
+\headr{第~\thepage~页}
+
+\begin{document}
+
+% =============================================
+% 标题区：Logo、标题、副标题、姓名
+% =============================================
+\begin{center}
+    {\Large\bfseries XXXX年XX月XX日至XXXX年XX月XX日进度汇报\par}
+\end{center}
+\vspace{-0.3em}
+\hfill 姓名：罗林焘\,\orcidlink{0009-0001-5790-4866}\par
+\vspace{-0.3em}
+
+% 引用图表请用 \figref{标签}、\tabref{标签}，输出“图 1”“表 1”（数字前留空格）
+\section{文献阅读}
+本周我阅读了一篇关于XXX的文献，该文献发表于XXX杂志，主要研究了XXXX。文献XXXXX……
+
+\section{XX项目}
+本周我针对XXX项目，完成了如下的工作：首先，XXXX；其次，XXXX；最后，XXXX。
+
+\section{XX项目}
+本周我针对XXX项目，完成了如下的工作：XXXX；XXXX；XXXX。
+
+\section{XX项目}
+本周我针对XXX项目，完成了如下的工作：XXXX；XXXX。
+
+\section{XX开发}
+本周我针对XXX软件，进行了如下的功能开发：首先，XXXX；其次，XXXX。
+
+\section{下周计划}
+下周我将重点放到XXX、XXX和XXX方面。
+
+\end{document}
