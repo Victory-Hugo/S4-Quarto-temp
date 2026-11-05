@@ -8,6 +8,8 @@
 - `cbook_1`: 中文 XeLaTeX 书籍模板（三国演义）
 - `cjcart`: 中文 XeLaTeX 文章模板
 - `CQMU-week-report`: 重医科研周报（进度汇报）XeLaTeX 模板
+- `beamer_dark_colorful`: 深紫霓虹风 Beamer 幻灯片模板（XeLaTeX）
+- `beamer_white_simple`: 白底简洁 Beamer 幻灯片模板（XeLaTeX）
 
 ## 使用方法
 
@@ -16,6 +18,8 @@ quarto use template Victory-Hugo/S4-Quarto-temp/ctexart_1
 quarto use template Victory-Hugo/S4-Quarto-temp/cbook_1
 quarto use template Victory-Hugo/S4-Quarto-temp/cjcart
 quarto use template Victory-Hugo/S4-Quarto-temp/CQMU-week-report
+quarto use template Victory-Hugo/S4-Quarto-temp/beamer_dark_colorful
+quarto use template Victory-Hugo/S4-Quarto-temp/beamer_white_simple
 ```
 
 生成后可渲染：

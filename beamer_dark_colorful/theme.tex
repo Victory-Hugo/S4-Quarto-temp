@@ -1,0 +1,206 @@
+% =====================================================================
+%  theme.tex —— NeonDark 深紫霓虹风主题（版式 + 组件库）
+%  一般不需要改动；内容请只改 main.tex。
+%  想换配色：只改下面「主题色板」里的 HTML 色值即可。
+% =====================================================================
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usepackage{graphicx}
+\graphicspath{{image/}}
+\usepackage[most]{tcolorbox}
+\usefonttheme[onlymath]{serif}
+% ----------------------------- 主题色板 -----------------------------
+\definecolor{deepbg}{HTML}{0A0618}        % 全局深底
+\definecolor{bgcard}{HTML}{161029}    % 卡片底
+\definecolor{bgdeep}{HTML}{0D0A1E}    % 更深的嵌套底
+\definecolor{bgbadge}{HTML}{150E2C}   % 徽章底
+\definecolor{border}{HTML}{2B2344}    % 卡片描边
+\definecolor{lighttext}{HTML}{F0E6FF} % 高亮正文
+\definecolor{bodytext}{HTML}{D4C8E8}  % 常规正文
+\definecolor{muted}{HTML}{9A8AAA}     % 次要文字
+\definecolor{fainttext}{HTML}{6A5A7E} % 弱化文字
+\definecolor{purple}{HTML}{7C3AED}    % 主紫
+\definecolor{violetL}{HTML}{A78BFA}   % 亮紫
+\definecolor{blueL}{HTML}{60A5FA}     % 亮蓝
+\definecolor{pink}{HTML}{EC4899}      % 粉
+\definecolor{pinkL}{HTML}{F472B6}     % 亮粉
+\definecolor{cyanL}{HTML}{22D3EE}     % 亮青
+\definecolor{goldL}{HTML}{FBBF24}     % 亮金
+\definecolor{redL}{HTML}{F87171}      % 亮红
+\definecolor{greenL}{HTML}{34D399}    % 亮绿
+
+% ----------------------------- 全局字体 -----------------------------
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\large, series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\footnotesize}
+
+% ----------------------------- Beamer 基础设置 ----------------------
+\setbeamercolor{background canvas}{bg=deepbg}
+\setbeamercolor{normal text}{fg=bodytext}
+\setbeamercolor{frametitle}{fg=violetL}
+\setbeamercolor{framesubtitle}{fg=muted}
+\setbeamercolor{math text displayed}{fg=lighttext}
+\setbeamercolor{math text inline}{fg=lighttext}
+\setbeamercolor{title}{fg=lighttext}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded]
+\setbeamertemplate{caption}[numbered]
+
+% ----------------------------- 背景：暗紫光晕 + 星点 ----------------
+% 模拟原 HTML 的 Canvas 粒子背景（静态、确定性）
+\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[remember picture, overlay,
+      shift={(current page.south west)}, x=\paperwidth, y=\paperheight]
+    \fill[deepbg] (0,0) rectangle (1,1);
+    % 角落光晕
+    \fill[purple, opacity=0.06] (1.0,1.0) circle (0.38);
+    \fill[pink,   opacity=0.05] (0.0,0.0) circle (0.32);
+    \fill[blueL,  opacity=0.04] (1.0,0.05) circle (0.26);
+    \fill[purple, opacity=0.05] (0.05,1.0) circle (0.22);
+    % 星点
+    \foreach \x/\y/\r in {0.10/0.86/2.2, 0.24/0.72/1.4, 0.40/0.93/1.8,
+                          0.62/0.80/1.2, 0.78/0.90/2.0, 0.92/0.66/1.4,
+                          0.86/0.30/1.8, 0.70/0.16/1.2, 0.55/0.06/1.6,
+                          0.36/0.20/1.4, 0.18/0.10/1.8, 0.07/0.38/1.2,
+                          0.94/0.12/1.2, 0.50/0.50/1.0}{
+      \fill[violetL, opacity=0.10] (\x,\y) circle (\r pt);}
+    \foreach \x/\y/\r in {0.16/0.62/1.2, 0.33/0.40/1.6, 0.68/0.58/1.4,
+                          0.88/0.48/1.2, 0.45/0.80/1.0, 0.75/0.05/1.6,
+                          0.05/0.55/1.4, 0.58/0.30/1.0}{
+      \fill[blueL, opacity=0.08] (\x,\y) circle (\r pt);}
+    \foreach \x/\y/\r in {0.28/0.88/1.0, 0.82/0.76/1.6, 0.65/0.35/1.2,
+                          0.12/0.24/1.0, 0.40/0.60/1.0, 0.92/0.86/1.2}{
+      \fill[pinkL, opacity=0.07] (\x,\y) circle (\r pt);}
+  \end{tikzpicture}%
+}
+
+% ----------------------------- 标题区模板 ----------------------------
+% 渐变分隔线：紫 → 粉
+\newcommand{\gradrule}{%
+  \tikz\fill[draw=none, left color=purple, right color=pink,
+             rounded corners=1pt] (0,0) rectangle (1.35cm,0.09cm);}
+
+\setbeamertemplate{frametitle}{%
+  \vspace{1.6mm}%
+  {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par}%
+  \vspace{1.0mm}\gradrule\vspace{0.6mm}%
+  \ifx\insertframesubtitle\empty\else
+    {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}%
+  \fi
+  \vspace{0.6mm}%
+}
+
+% ----------------------------- 页脚：页码 + 进度条 -------------------
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[ht=2.2mm, dp=1.0mm, center]{footline}
+    \color{fainttext}\scriptsize
+    \textcolor{violetL}{$\blacktriangleleft$}\hspace{1.5mm}%
+    \insertframenumber\,/\,\inserttotalframenumber\hspace{1.5mm}%
+    \textcolor{pinkL}{$\blacktriangleright$}
+  \end{beamercolorbox}%
+  \begin{tikzpicture}
+    \fill[border] (0,0) rectangle (\paperwidth, 1.2pt);
+    \fill[draw=none, left color=purple, right color=pink]
+      (0,0) rectangle
+      (\dimexpr\paperwidth*\insertframenumber/\inserttotalframenumber\relax, 1.2pt);
+  \end{tikzpicture}%
+}
+
+% =====================================================================
+%  模板组件库（自定义命令，可直接复用）
+% =====================================================================
+% \Badge{描边色}{文字色}{文字} —— 胶囊徽章
+\newcommand{\Badge}[3]{%
+  \tcbox[on line, colback=bgbadge, colframe=#1, boxrule=0.6pt, arc=8pt,
+         left=7pt, right=7pt, top=2pt, bottom=2pt,
+         before skip=2pt, after skip=2pt]
+    {\color{#2}\footnotesize\bfseries #3}}
+
+% 卡片环境：card（普通）/ cardc{描边色}（彩色描边卡片）
+\newtcolorbox{card}{%
+  colback=bgcard, colframe=border, boxrule=0.6pt, arc=3mm,
+  left=3.5mm, right=3.5mm, top=2.2mm, bottom=2.2mm,
+  before skip=1.6mm, after skip=1.6mm}
+\newtcolorbox{cardc}[1]{%
+  colback=bgcard, colframe=#1, boxrule=0.7pt, arc=3mm,
+  left=3.5mm, right=3.5mm, top=2.2mm, bottom=2.2mm,
+  before skip=1.6mm, after skip=1.6mm}
+
+% 提示条：\notebox{描边色}{文字色}{内容}
+\newcommand{\notebox}[3]{%
+  \begin{tcolorbox}[colback=bgdeep, colframe=#1, boxrule=0.5pt, arc=2mm,
+                    left=4mm, right=4mm, top=1.6mm, bottom=1.6mm,
+                    before skip=1.6mm, after skip=1.6mm]
+    \centering{\color{#2}\small #3}
+  \end{tcolorbox}}
+
+% 卡片标题与描述的简写
+\newcommand{\cardtitle}[1]{{\color{lighttext}\bfseries #1}}
+\newcommand{\carddesc}[1]{{\color{muted}\footnotesize #1}}
+
+% 地图节点：\fnode{主文字}{副文字}（普通）/ \fnodeC{主文字}（核心，紫底高亮）
+\newcommand{\fnode}[2]{%
+  \tcbox[on line, colback=bgcard, colframe=border, boxrule=0.6pt, arc=2mm,
+         left=5pt, right=5pt, top=2.5pt, bottom=2.5pt]
+    {{\color{bodytext}#1}\ {\color{fainttext}\scriptsize #2}}}
+\newcommand{\fnodeC}[1]{%
+  \tcbox[on line, colback=purple!22!deepbg, colframe=purple, boxrule=0.7pt, arc=2mm,
+         left=5pt, right=5pt, top=2.5pt, bottom=2.5pt]
+    {\color{lighttext}\bfseries #1}}
+
+% 流程步骤节点：\stepnode{章号}{名称}{描述} / \stepnodeH（高亮）
+\newcommand{\stepnode}[3]{%
+  \tcbox[on line, colback=bgcard, colframe=border, boxrule=0.6pt, arc=2mm,
+         left=3pt, right=3pt, top=2pt, bottom=2pt]
+    {\begin{minipage}{1.72cm}\centering
+     {\color{violetL}\scriptsize\bfseries #1}\\
+     {\color{lighttext}\small\bfseries #2}\\
+     {\color{fainttext}\tiny #3}
+     \end{minipage}}}
+\newcommand{\stepnodeH}[3]{%
+  \tcbox[on line, colback=purple!22!deepbg, colframe=purple, boxrule=0.7pt, arc=2mm,
+         left=3pt, right=3pt, top=2pt, bottom=2pt]
+    {\begin{minipage}{1.72cm}\centering
+     {\color{violetL}\scriptsize\bfseries #1}\\
+     {\color{lighttext}\small\bfseries #2}\\
+     {\color{fainttext}\tiny #3}
+     \end{minipage}}}
+
+
+
+% =====================================================================
+%  左图右文组件
+% =====================================================================
+% 图片卡片：\PicCard{图片文件}{图注}
+\newcommand{\PicCard}[2]{%
+  \begin{tcolorbox}[colback=bgcard, colframe=border, boxrule=0.6pt, arc=3mm,
+                    boxsep=0pt, left=1.6mm, right=1.6mm, top=1.6mm, bottom=1.6mm,
+                    before skip=0pt, after skip=1mm]
+    \centering
+    \includegraphics[width=\linewidth, height=0.40\textheight, keepaspectratio]{#1}\\[1mm]
+    {\color{fainttext}\scriptsize #2}
+  \end{tcolorbox}}
+
+% 要点条目：\Point{强调色}{标题}{说明}
+\newcommand{\Point}[3]{%
+  \begin{tcolorbox}[colback=bgcard, colframe=border, boxrule=0pt,
+                    borderline west={2.2pt}{0pt}{#1}, arc=1.5mm,
+                    left=3.2mm, right=2mm, top=0.9mm, bottom=0.9mm,
+                    before skip=0.8mm, after skip=0.8mm]
+    {\color{#1}\bfseries\small #2}\\[0.4mm]
+    {\color{muted}\footnotesize #3}
+  \end{tcolorbox}}
+
+% 左图右文整页：\PicLeft{图片}{图注}{右侧内容}（右侧内容通常是若干 \Point）
+\newcommand{\PicLeft}[3]{%
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}\PicCard{#1}{#2}\end{column}
+    \begin{column}{0.53\textwidth}#3\end{column}
+  \end{columns}}
+
+% 右图左文版本（想换个节奏时使用，参数相同）
+\newcommand{\PicRight}[3]{%
+  \begin{columns}[T]
+    \begin{column}{0.53\textwidth}#3\end{column}
+    \begin{column}{0.44\textwidth}\PicCard{#1}{#2}\end{column}
+  \end{columns}}

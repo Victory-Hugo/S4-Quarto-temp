@@ -1,0 +1,400 @@
+% !TEX program = xelatex
+% =====================================================================
+%  群体遗传学 · mtDNA 与 chrY —— 幻灯片内容（只改这个文件即可）
+%  编译：xelatex main.tex（两遍，生成页码与进度条）
+%  版式组件在 theme.tex；使用说明见 README.md
+%  图片放在 image/ 目录，\PicLeft 里只写文件名，如 1.png
+% =====================================================================
+\documentclass[aspectratio=169]{ctexbeamer}
+\input{theme}
+
+% ----------------------------- 基本信息 -----------------------------
+\title{群体遗传学：mtDNA 与 chrY}
+\author{报告人姓名}
+\institute{单位 · 学院 / 实验室}
+\date{2026 年 11 月}
+
+\begin{document}
+
+% ---------------------------------------------------------------------
+%  1 · 封面
+% ---------------------------------------------------------------------
+\begin{frame}[plain]
+  \centering
+  \vspace{6mm}
+  \Badge{purple}{violetL}{单位 · 学院 / 实验室}
+  \par\vspace{6mm}
+  {\Huge\bfseries {\color{pinkL}mtDNA}~{\color{violetL}$\times$}~{\color{blueL}chrY}}
+  \par\vspace{3.5mm}
+  {\large\color{bodytext}\ziju{0.6}群体遗传学}
+  \par\vspace{2.5mm}
+  {\color{violetL}母系与父系，两条读取人群历史的“单行道”}
+  \par\vspace{2.5mm}
+  \gradrule
+  \par\vspace{3.5mm}
+  {\color{muted}报告人姓名 \quad·\quad 2026 年 11 月}
+  \par\vspace{7mm}
+  {\color{muted}\footnotesize
+    线粒体 DNA\quad$\bullet$\quad Y 染色体\quad$\bullet$\quad
+    单倍群\quad$\bullet$\quad 人群迁徙}
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  2 · 引入问题（三张卡片）
+% ---------------------------------------------------------------------
+\begin{frame}{为什么盯着这两段 DNA？}{三个常常被问到的问题}
+  \Badge{pink}{pinkL}{问题引入}\vspace{1mm}
+
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{pinkL}\Large 母}\\[1mm]
+        \cardtitle{我的母系祖先从哪来？}\\[1mm]
+        \carddesc{mtDNA 只经母亲传递，几乎不重组}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{blueL}\Large 父}\\[1mm]
+        \cardtitle{父系祖先走过哪些路？}\\[1mm]
+        \carddesc{chrY 非重组区只经父亲传递}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{violetL}\Large $\Delta t$}\\[1mm]
+        \cardtitle{这段历史有多古老？}\\[1mm]
+        \carddesc{突变积累 $\to$ 分子钟 $\to$ 分化时间}
+      \end{card}
+    \end{column}
+  \end{columns}
+
+  \notebox{border}{pinkL}{\small
+    单一世系的传递路径清晰 —— 数“突变”就能重建“谱系”}
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  3 · 对比（左右两张卡片）
+% ---------------------------------------------------------------------
+\begin{frame}{两条世系 · 一张对照表}{同样是“单倍体”，脾气却不一样}
+  \Badge{purple}{violetL}{核心对比}\vspace{0.5mm}
+
+  \begin{columns}[t]
+    \begin{column}{0.49\textwidth}
+      \begin{cardc}{pink!60!border}
+        \centering
+        {\color{pinkL}\Large mtDNA}\\[1mm]
+        {\color{pinkL}\bfseries 母系 · 线粒体}\\[1.5mm]
+        {\color{muted}\footnotesize
+          环状，约 16.6 kb，37 个基因\\
+          高拷贝、高突变率、可见异质性\\[1mm]
+          {\color{pinkL}$\to$ 适合：深度祖源、古 DNA}}
+      \end{cardc}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{cardc}{blueL!60!border}
+        \centering
+        {\color{blueL}\Large chrY}\\[1mm]
+        {\color{blueL}\bfseries 父系 · Y 染色体}\\[1.5mm]
+        {\color{muted}\footnotesize
+          线状，约 57 Mb，非重组区（NRY）占大部分\\
+          拷贝少、突变率低、SNP + STR 双标记\\[1mm]
+          {\color{blueL}$\to$ 适合：父系扩张、姓氏与家族}}
+      \end{cardc}
+    \end{column}
+  \end{columns}
+
+  \notebox{purple!50!border}{violetL}{\small
+    两者合看：{\color{lighttext}谁迁徙了？男性还是女性？} \quad
+    {\color{fainttext}\footnotesize $\to$ 性别偏向的人口历史}}
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  4–10 · 左图右文（把图片换成自己的图，把文字换成自己的解读）
+% ---------------------------------------------------------------------
+\begin{frame}{mtDNA：母系的“活化石”}{结构与遗传特点}
+  \Badge{pink}{pinkL}{母系遗传}\vspace{0.5mm}
+
+  \PicLeft{1.png}{图 1 · 占位图：mtDNA 环状图谱（替换为自己的图）}{
+    \Point{pinkL}{只经母亲传递}{精子线粒体在受精后基本被清除，世系单线延续}
+    \Point{violetL}{几乎无重组}{整条分子作为一个单倍型传递，系统树可直接解读}
+    \Point{blueL}{高拷贝 · 高突变率}{每个细胞数百至数千拷贝，古 DNA 中更易保存}
+    \Point{goldL}{异质性（heteroplasmy）}{同一个体可混有多种 mtDNA 序列，需要注意}
+  }
+\end{frame}
+
+\begin{frame}{chrY：父系的“姓氏”}{结构与遗传特点}
+  \Badge{blueL}{blueL}{父系遗传}\vspace{0.5mm}
+
+  \PicLeft{2.png}{图 2 · 占位图：Y 染色体结构示意（替换为自己的图）}{
+    \Point{blueL}{只经父亲传递}{非重组区（NRY）整体作为单倍型，从父亲传给儿子}
+    \Point{violetL}{SNP 定单倍群，STR 看近亲}{SNP 稳定，适合划分深层分支；STR 变化快，适合家族尺度}
+    \Point{cyanL}{高度重复的区域}{回文与扩增子序列使比对和分型更具挑战}
+    \Point{pinkL}{与姓氏高度相关}{父系传递的模式与许多文化中姓氏的传承相似}
+  }
+\end{frame}
+
+\begin{frame}{单倍群与系统发育树}{用突变为世系“命名”}
+  \Badge{purple}{violetL}{世系分类}\vspace{0.5mm}
+
+  \PicLeft{4.jpg}{图 3 · 占位图：单倍群系统树（替换为自己的图）}{
+    \Point{violetL}{单倍群 = 共享突变的分支}{同一分支的个体拥有共同祖先和相同的标志性突变}
+    \Point{pinkL}{mtDNA：L0–L6, M, N, R …}{以 rCRS 为参照，PhyloTree 维护标准命名}
+    \Point{blueL}{chrY：A–T 与亚支}{ISOGG 维护命名，新 SNP 不断细化分支}
+    \Point{goldL}{根在非洲}{两种世系最深的分支（L0 / A00, A0）均出现在非洲人群}
+  }
+\end{frame}
+
+\begin{frame}{突变率与分子钟}{把“突变数”换算成“年代”}
+  \Badge{goldL}{goldL}{时间标尺}\vspace{0.5mm}
+
+  \PicLeft{5.png}{图 4 · 占位图：分子钟 / 分化时间估计（替换为自己的图）}{
+    \Point{goldL}{基本思想}{突变大致随时间线性积累：\ $t \approx d\,/\,(2\mu)$}
+    \Point{pinkL}{mtDNA 速率}{约 $10^{-8}$ /位点/年量级，控制区高于编码区}
+    \Point{blueL}{chrY 速率}{约 $10^{-9}$ /位点/年量级，可用古 DNA 校准}
+    \Point{redL}{注意校准}{速率不同，年代可差数倍，须注明所用速率}
+  }
+\end{frame}
+
+\begin{frame}{有效群体大小与遗传漂变}{为什么这两段 DNA “更敏感”}
+  \Badge{cyanL}{cyanL}{漂变更强}\vspace{0.5mm}
+
+  \PicLeft{6.png}{图 5 · 占位图：瓶颈 / 奠基者效应示意（替换为自己的图）}{
+    \Point{cyanL}{有效群体大小仅为常染色体的 1/4}{单倍体、单性别传递 $\to$ $N_e$ 更小}
+    \Point{violetL}{漂变更快}{瓶颈、奠基者效应会在单一世系上留下清晰印记}
+    \Point{pinkL}{扩张的“星状”信号}{短期内的快速扩张，在网络图中呈现星状辐射}
+    \Point{goldL}{代价}{只反映一条世系，不代表全基因组历史}
+  }
+\end{frame}
+
+\begin{frame}{古 DNA 与迁徙路线}{把现代世系放回历史坐标}
+  \Badge{greenL}{greenL}{人群迁徙}\vspace{0.5mm}
+
+  \PicLeft{1.png}{图 6 · 占位图：迁徙路线与古 DNA 样本（替换为自己的图）}{
+    \Point{greenL}{现代 + 古代一起看}{古 DNA 提供时间切片，现代数据提供分布全景}
+    \Point{blueL}{单倍群频率的时空变化}{某些单倍群的兴衰对应农业扩张、草原迁徙等事件}
+    \Point{pinkL}{TMRCA（最近共同祖先）}{“线粒体夏娃”与“Y 染色体亚当”不是同一时代、同一个人}
+    \Point{goldL}{结合考古与语言学}{单一证据很难定案，多源互证更可靠}
+  }
+\end{frame}
+
+\begin{frame}{性别偏向的人口历史}{mtDNA 与 chrY 的“不同步”}
+  \Badge{pink}{pinkL}{关键洞察}\vspace{0.5mm}
+
+  \PicLeft{2.png}{图 7 · 占位图：mtDNA 与 chrY 多样性对比（替换为自己的图）}{
+    \Point{pinkL}{父居 vs 母居}{从夫居人群的 chrY 地理结构常强于 mtDNA}
+    \Point{blueL}{男性有效群体大小}{少数男性贡献大量后代，chrY 多样性骤降}
+    \Point{violetL}{混血的不对称}{殖民、征服使两条世系的外来成分比例不同}
+    \Point{goldL}{解读方法}{对比 $F_{ST}$、$\pi$ 与世系组成，再结合历史背景}
+  }
+\end{frame}
+
+\begin{frame}{常用统计量}{描述多样性与分化}
+  \Badge{violetL}{violetL}{统计指标}\vspace{0.5mm}
+
+  \PicRight{4.jpg}{图 8 · 占位图：多样性 / 分化结果示意（替换为自己的图）}{
+    \Point{violetL}{单倍型多样性 $Hd$ 与核苷酸多样性 $\pi$}{衡量群体内的变异水平}
+    \Point{cyanL}{Tajima's $D$、Fu's $F_S$}{检验中性与群体扩张}
+    \Point{pinkL}{$F_{ST}$ 与 AMOVA}{衡量群体间的分化，及变异的分层来源}
+    \Point{goldL}{PCA / MDS / 网络图}{直观展示群体之间的亲缘关系}
+  }
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  分析流程（流程节点）
+% ---------------------------------------------------------------------
+\begin{frame}{典型分析流程}{从原始数据到可解读的结论}
+  \Badge{purple}{violetL}{分析主线}\vspace{0.5mm}
+
+  \begin{center}
+    \stepnodeH{步骤 1}{数据}{WGS / 芯片 / 捕获}\hspace{1pt}
+    \stepnode{步骤 2}{质控}{比对 · 覆盖度 · 污染}\hspace{1pt}
+    \stepnode{步骤 3}{分型}{单倍群 · 变异检出}\hspace{1pt}
+    \stepnode{步骤 4}{建树}{ML · 贝叶斯 · 网络}\hspace{1pt}
+    \stepnode{步骤 5}{统计}{多样性 · 分化 · 中性检验}\hspace{1pt}
+    \stepnode{步骤 6}{解读}{年代 · 迁徙 · 历史}
+  \end{center}
+
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{tcolorbox}[colback=purple!14!deepbg, colframe=border, boxrule=0.5pt, arc=2mm,
+                        left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+        \centering
+        {\color{violetL}\scriptsize\bfseries 前两步}\\
+        {\color{bodytext}\footnotesize 数据质量决定上限}\\
+        {\color{fainttext}\tiny 古 DNA 尤其要看污染与损伤}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{tcolorbox}[colback=pink!14!deepbg, colframe=border, boxrule=0.5pt, arc=2mm,
+                        left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+        \centering
+        {\color{pinkL}\scriptsize\bfseries 中间两步}\\
+        {\color{bodytext}\footnotesize 分型与建树是核心}\\
+        {\color{fainttext}\tiny 结果须与参考树交叉验证}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{tcolorbox}[colback=cyanL!14!deepbg, colframe=border, boxrule=0.5pt, arc=2mm,
+                        left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+        \centering
+        {\color{cyanL}\scriptsize\bfseries 最后两步}\\
+        {\color{bodytext}\footnotesize 统计与解读要克制}\\
+        {\color{fainttext}\tiny 单一世系 $\neq$ 全部历史}
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  工具与数据库（六宫格卡片）
+% ---------------------------------------------------------------------
+\begin{frame}[shrink=6]{常用工具与数据库}{替换成自己实际用到的软件}
+  \Badge{cyanL}{cyanL}{工具箱}\vspace{0.5mm}
+
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{pinkL}\bfseries mtDNA}\\[1mm]
+        \cardtitle{HaploGrep · PhyloTree}\\[0.8mm]
+        \carddesc{mtDNA 单倍群分型与标准参考树}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{blueL}\bfseries chrY}\\[1mm]
+        \cardtitle{Yleaf · yhaplo · ISOGG}\\[0.8mm]
+        \carddesc{Y 单倍群分型与命名体系}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{goldL}\bfseries Tree}\\[1mm]
+        \cardtitle{IQ-TREE · BEAST}\\[0.8mm]
+        \carddesc{最大似然建树与贝叶斯分化时间估计}
+      \end{card}
+    \end{column}
+  \end{columns}
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{violetL}\bfseries Net}\\[1mm]
+        \cardtitle{PopART · Network}\\[0.8mm]
+        \carddesc{中接网络、星状扩张可视化}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{cyanL}\bfseries Stat}\\[1mm]
+        \cardtitle{Arlequin · DnaSP}\\[0.8mm]
+        \carddesc{多样性、Tajima's $D$、AMOVA、$F_{ST}$}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{greenL}\bfseries Data}\\[1mm]
+        \cardtitle{AADR · 1000 Genomes}\\[0.8mm]
+        \carddesc{古代与现代人群的公开数据集}
+      \end{card}
+    \end{column}
+  \end{columns}
+
+  \centering{\color{fainttext}\scriptsize
+    工具版本与参数请在正文或附录中写明，便于复现}
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  局限与避坑（三栏 + 两个提示框）
+% ---------------------------------------------------------------------
+\begin{frame}[shrink=8]{局限与避坑}{单一世系的力量，也是它的边界}
+  \Badge{redL}{redL}{谨慎解读}\vspace{0.5mm}
+
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{violetL}\large\bfseries 1}\\[1mm]
+        \cardtitle{只是一条世系}\\[0.8mm]
+        \carddesc{mtDNA 与 chrY 各自只占祖先的一小部分\\
+                  {\color{fainttext}需要常染色体数据互证}}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{pinkL}\large\bfseries 2}\\[1mm]
+        \cardtitle{样本与采样偏差}\\[0.8mm]
+        \carddesc{样本量少、地域不均会扭曲频率\\
+                  {\color{fainttext}注意亲缘个体与代表性}}
+      \end{card}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{card}
+        \centering
+        {\color{blueL}\large\bfseries 3}\\[1mm]
+        \cardtitle{时间估计不确定}\\[0.8mm]
+        \carddesc{突变率、世代时间都有分歧\\
+                  {\color{fainttext}报告置信区间而非单一数字}}
+      \end{card}
+    \end{column}
+  \end{columns}
+
+  \begin{columns}[t]
+    \begin{column}{0.49\textwidth}
+      \begin{tcolorbox}[colback=redL!10!deepbg, colframe=redL, boxrule=0pt,
+                        borderline west={2.5pt}{0pt}{redL}, arc=1.5mm,
+                        left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+        {\color{redL}\bfseries\small 常见误区}\\[0.5mm]
+        {\color{muted}\footnotesize
+          “单倍群 = 民族 / 血统” $\to$ 单倍群只描述一条世系，并不等于个人的全部祖源}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{tcolorbox}[colback=blueL!10!deepbg, colframe=blueL, boxrule=0pt,
+                        borderline west={2.5pt}{0pt}{blueL}, arc=1.5mm,
+                        left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+        {\color{blueL}\bfseries\small 最佳实践}\\[0.5mm]
+        {\color{muted}\footnotesize
+          mtDNA + chrY + 常染色体联合分析，并与考古、语言学证据相互印证}
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+
+  \notebox{purple!50!border}{violetL}{\small
+    让数据说话，但不要让它说得比它能说的更多}
+\end{frame}
+
+% ---------------------------------------------------------------------
+%  结语
+% ---------------------------------------------------------------------
+\begin{frame}[plain]
+  \centering
+  \vfill
+  {\color{goldL}\Large $\star$}
+  \par\vspace{3.5mm}
+  {\large\color{bodytext}母系与父系，两条世系，}
+  \par\vspace{2mm}
+  {\large 共同讲述{\color{lighttext}\bfseries 人类走过的路}。}
+  \par\vspace{3.5mm}
+  \gradrule
+  \par\vspace{3.5mm}
+  {\color{violetL}\ziju{0.2}单位 · 学院 / 实验室}
+  \par\vspace{2mm}
+  {\color{muted}\small 谢谢大家，欢迎提问与讨论}
+  \par\vspace{5mm}
+  {\color{fainttext}\footnotesize
+    mtDNA\quad$\bullet$\quad chrY\quad$\bullet$\quad 群体遗传学\quad$\bullet$\quad
+    2026}
+  \vfill
+\end{frame}
+
+\end{document}
